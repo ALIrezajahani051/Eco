@@ -1,0 +1,132 @@
+
+footer h4::before {
+  content: "";
+  display: inline-block;
+  width: 10px; 
+  height: 10px;
+  background-color: #2e73e2; 
+  border-radius: 50%; /* دایره */
+  margin-left: 8px; /* فاصله از عنوان */
+  vertical-align: middle; /* تنظیم عمودی */
+}
+
+/* تنظیم اندازه تصاویر نماد اعتماد */
+.icon-size {
+  width: 40px; /* اندازه مناسب */
+  height: 40px;
+}
+
+@media (min-width: 640px) {
+  .icon-size {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .icon-size {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #e8e8e8;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 1px;
+}
+
+.social-icon i {
+  font-size: 1.5em;
+  color: #909090;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  background-color: #0078d4;
+}
+
+.social-icon:hover i {
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    padding: 3px;
+  }
+
+  .social-icon i {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icon {
+    width: 45px;
+    height: 45px;
+    padding: 4px;
+  }
+
+  .social-icon i {
+    font-size: 1.9em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+  }
+
+  .social-icon i {
+    font-size: 1.5em;
+  }
+}
+
+.whatsapp-icon {
+  background-color: #e8e8e8;
+}
+
+.whatsapp-icon:hover {
+  background-color: #075e54;
+}
+
+.facebook-icon {
+  background-color: #e8e8e8;
+}
+
+.facebook-icon:hover {
+  background-color: #0d8bda;
+}
+
+.instagram-icon {
+  background-color: #e8e8e8;
+}
+
+.instagram-icon:hover {
+  background-color: #c13584;
+}
+
+.twitter-icon {
+  background-color: #e8e8e8;
+}
+
+.twitter-icon:hover {
+  background-color: #0d8bda;
+}
