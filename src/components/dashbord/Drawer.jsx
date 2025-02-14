@@ -25,13 +25,17 @@ import {
   IconlyCalendarbold,
   IconlyBook2,
   IconlyWallet,
+  IconlyReportBold,
   IconlyReport,
   Iconlyuser,
+  IconlyEduBold,
   Iconlyuserbold,
   IconlyEditbold,
   IconlyWalletbold,
   IconlyGameBold,
   IconlySupport,
+  IconlyBookBold,
+  IconlyBook2Bold,
 } from "../../../public/Icons";
 
 const customTheme = createTheme({
@@ -153,17 +157,17 @@ export default function PersistentDrawerLeft({
               {
                 label: "حضور و غیاب",
                 icon: <IconlyProfileTick />,
-                iconbold: <Iconlyuserbold />,
+                iconbold: <IconlyProfileTick fill="black" />,
               },
               {
                 label: "گزارشات",
                 icon: <IconlyReport />,
-                iconbold: <Iconlyuserbold />,
+                iconbold: <IconlyReportBold />,
               },
               {
                 label: "محتوای آموزشی",
                 icon: <IconlyEdu />,
-                iconbold: <Iconlyuserbold />,
+                iconbold: <IconlyEduBold />,
               },
               {
                 label: "بازی و سرگرمی",
@@ -183,12 +187,12 @@ export default function PersistentDrawerLeft({
               {
                 label: "برنامه مطالعه",
                 icon: <IconlyBook />,
-                iconbold: <Iconlyuserbold />,
+                iconbold: <IconlyBookBold />,
               },
               {
                 label: "بانک سوالات",
                 icon: <IconlyBook2 />,
-                iconbold: <Iconlyuserbold />,
+                iconbold: <IconlyBook2Bold />,
               },
               {
                 label: "شهریه",

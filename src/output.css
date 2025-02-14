@@ -788,6 +788,12 @@ video {
   src: url("/fonts/YekanBakh-Regular.woff");
 }
 
+@font-face {
+  font-family: IranSans;
+  src: url("/fonts/Vazir-Regular-FD.ttf");
+  unicode-range: U+30-39;
+}
+
 body {
   font-family: "IranSans", Arial, sans-serif;
   margin: 0;

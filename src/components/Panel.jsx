@@ -24,7 +24,10 @@ function Panel() {
           flexGrow: 1,
           marginRight: "10px",
           marginBottom: "20px",
+          paddingTop: "30px",
           display: "flex",
+          paddingRight: "15px",
+          paddingLeft: "15px",
           flexDirection: "column",
           alignItems: "center",
         }}
