@@ -770,13 +770,22 @@ video {
 
 @font-face {
   font-family: IranSans;
-  src: url("/fonts/Vazir-Regular-FD.ttf");
-  unicode-range: U+30-39;
+  src: url("/fonts/YekanBakh-SemiBold.woff");
 }
+
 @font-face {
-  font-family: IranSans;
-  src: url("/fonts/Vazir-Regular.woff");
-  unicode-range: U+0-2f, U+40-10FFFF;
+  font-family: BoldIran;
+  src: url("/fonts/YekanBakh-ExtraBold.woff");
+}
+
+@font-face {
+  font-family: Bold;
+  src: url("/fonts/YekanBakh-Bold.woff");
+}
+
+@font-face {
+  font-family: Regular;
+  src: url("/fonts/YekanBakh-Regular.woff");
 }
 
 body {

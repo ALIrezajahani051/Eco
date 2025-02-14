@@ -9,7 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
-import Dashboard from "./components/dashbord/Dashboard";
+import Panel from "./components/Panel";
+
 function App() {
   return (
     <>
@@ -19,7 +20,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <Panel />
+              </>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
