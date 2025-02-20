@@ -769,28 +769,33 @@ video {
 }
 
 @font-face {
-  font-family: IranSans;
-  src: url("/fonts/YekanBakh-SemiBold.woff");
+  font-family: "IranSans";
+  src: url("/fonts/YekanBakh-SemiBold.woff2") format("woff2"),
+    url("/fonts/YekanBakh-SemiBold.woff") format("woff");
 }
 
 @font-face {
-  font-family: BoldIran;
-  src: url("/fonts/YekanBakh-ExtraBold.woff");
+  font-family: "BoldIran";
+  src: url("/fonts/YekanBakh-ExtraBold.woff2") format("woff2"),
+    url("/fonts/YekanBakh-ExtraBold.woff") format("woff");
 }
 
 @font-face {
-  font-family: Bold;
-  src: url("/fonts/YekanBakh-Bold.woff");
+  font-family: "Bold";
+  src: url("/fonts/YekanBakh-Bold.woff2") format("woff2"),
+    url("/fonts/YekanBakh-Bold.woff") format("woff");
 }
 
 @font-face {
-  font-family: Regular;
-  src: url("/fonts/YekanBakh-Regular.woff");
+  font-family: "Regular";
+  src: url("/fonts/YekanBakh-Regular.woff2") format("woff2"),
+    url("/fonts/YekanBakh-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: IranSans;
-  src: url("/fonts/Vazir-Regular-FD.ttf");
+  font-family: "IranSans";
+  src: url("/fonts/Vazir-Regular-FD.woff2") format("woff2"),
+    url("/fonts/Vazir-Regular-FD.woff") format("woff");
   unicode-range: U+30-39;
 }
 
@@ -805,7 +810,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   width: 100%;
   box-sizing: border-box;
 }

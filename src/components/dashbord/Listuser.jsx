@@ -177,6 +177,7 @@ export default function Listuser() {
 const buttonStyle = {
   display: "flex",
   alignItems: "center",
+  justifyContent:"center",
   gap: "8px",
   backgroundColor: "#003089",
   borderRadius: "10px",

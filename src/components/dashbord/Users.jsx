@@ -9,7 +9,8 @@ import {
 } from "../../../public/Icons";
 
 import Listuser from "./Listuser";
-
+import Classification from "./Classification";
+import Classificationteacher from "./Classificationteacher";
 const theme = createTheme({
   typography: {
     fontFamily: "IranSans, Arial, sans-serif",
@@ -59,6 +60,8 @@ const Users = ({ open }) => {
           }}
         >
           {activeItem == 0 && <Listuser />}
+          {activeItem == 1 && <Classification />}
+          {activeItem == 2 && <Classificationteacher />}
         </Box>
 
         <Grid

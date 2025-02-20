@@ -8,8 +8,6 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import LoginIcon from "@mui/icons-material/Login";
-import PersonAddAlt1OutlinedIcon from "@mui/icons-material/PersonAddAlt1Outlined";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import LockIcon from "@mui/icons-material/Lock";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -19,6 +17,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Toast.css";
+import {
+  IconlyHome,
+  IconlyProfile,
+  IconlyLogin,
+  IconlyAdduser,
+  IconlyCall,
+  IconlyLock,
+} from "../../../public/Icons";
 
 const theme = createTheme({
   typography: {
@@ -127,39 +133,54 @@ export default function Login() {
             padding: "40px",
           }}
         >
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 8 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              gap: { xs: 2, sm: 8 },
+            }}
+          >
             <Button
               sx={{
                 padding: "10px 20px",
                 fontSize: "1rem",
-                minWidth: "150px",
-                boxShadow: "none", // حذف سایه اصلی
+                minWidth: { xs: "100px", sm: "150px" },
+                boxShadow: "none",
                 "&:hover": {
-                  boxShadow: "none", // حذف سایه هنگام هاور
+                  boxShadow: "none",
                 },
+                display: "flex",
+                gap: 0.5,
               }}
               variant="contained"
               color="primary"
             >
-              <LoginIcon sx={{ marginLeft: "5px" }} />
+              <IconlyLogin
+                color="white"
+                size={25}
+                sx={{ marginLeft: "10px" }}
+              />
               ورود
             </Button>
             <Button
               sx={{
                 padding: "10px 20px",
                 fontSize: "1rem",
-                minWidth: "150px",
-                boxShadow: "none", // حذف سایه اصلی
+                minWidth: { xs: "100px", sm: "150px" },
+                cursor: "pointer",
+                boxShadow: "none",
                 "&:hover": {
-                  boxShadow: "none", // حذف سایه هنگام هاور
+                  boxShadow: "none",
                 },
+                display: "flex",
+                gap: 0.5,
               }}
-              variant="contained"
               color="white"
+              variant="contained"
               onClick={goSignup}
             >
-              <PersonAddAlt1OutlinedIcon sx={{ marginLeft: "5px" }} />
-              ثبت نام
+              <IconlyAdduser color="black"/>
+              ثبت نام مدارس
             </Button>
           </Box>
 
@@ -174,67 +195,25 @@ export default function Login() {
 
           <Divider variant="middle" />
 
-          <Box>
+          <Box sx={{ textAlign: "right" }}>
             <Typography
               variant="h6"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                textAlign: "right",
-              }}
+              sx={{ display: "flex", alignItems: "center" }}
             >
-              <PhoneEnabledIcon
-                sx={{
-                  fontSize: "1.2rem",
-                  marginLeft: "5px",
-                  alignSelf: "center",
-                }}
-              />
-              شماره موبایل:
-            </Typography>
-            <Box
+              {" "}
+              <IconlyProfile size={17} sx={{ fontSize: "1.2rem" }} />
+              نام کاربری:
+            </Typography>{" "}
+            <InputBase
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                backgroundColor: "#f3f3f3",
-                borderRadius: "4px",
+                backgroundColor: "#F3F3F3",
+                fontSize: "1rem",
+                width: "100%",
                 padding: 1,
-                direction: "ltr",
-                "&:hover": { backgroundColor: "#e0e0e0" },
+                borderRadius: "10px",
+                direction: "rtl",
               }}
-            >
-              <Typography
-                sx={{
-                  fontWeight: 500,
-                  marginLeft: "8px",
-                }}
-              >
-                98+
-              </Typography>
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ margin: "0 8px" }}
-              />
-              <InputBase
-                dir="rtl"
-                type="tel"
-                inputProps={{
-                  maxLength: 10,
-                  pattern: "[0-9]*",
-                }}
-                placeholder="9124867485"
-                value={username}
-                onChange={handleUsernameChange}
-                sx={{
-                  fontSize: "1rem",
-                  width: "100%",
-                  textAlign: "left",
-                  direction: "ltr",
-                }}
-              />
-            </Box>
+            />
             {error.username && (
               <Typography
                 sx={{
@@ -258,10 +237,9 @@ export default function Login() {
                 textAlign: "right",
               }}
             >
-              <LockIcon
+              <IconlyLock
+                size={18}
                 sx={{
-                  fontSize: "1.2rem",
-                  marginLeft: "5px",
                   alignSelf: "center",
                 }}
               />
@@ -271,10 +249,9 @@ export default function Login() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                backgroundColor: "#f3f3f3",
-                borderRadius: "4px",
+                backgroundColor: "#F3F3F3",
+                borderRadius: "10px",
                 padding: 1,
-                "&:hover": { backgroundColor: "#e0e0e0" },
               }}
             >
               <InputBase
@@ -282,7 +259,11 @@ export default function Login() {
                 placeholder="رمز عبور خود را وارد کنید"
                 value={password}
                 onChange={handlePasswordChange}
-                sx={{ fontSize: "0.8rem", width: "100%" }}
+                sx={{
+                  fontSize: "0.8rem",
+                  width: "100%",
+                  backgroundColor: "#F3F3F3",
+                }}
               />
               <IconButton onClick={togglePasswordVisibility}>
                 {showPassword ? (
