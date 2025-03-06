@@ -180,7 +180,10 @@ const AddClassification = ({ setItem }) => {
                 onChange={(e) => {
                   setmored(e.target.value);
                 }}
-                placeholder="مورد انظباطی موردنظر خود را تایپ کنید"
+                placeholder={` مورد${
+                  !type ? " انضباطی " : " تشویقی "
+                }را وارد کنید
+                `}
                 sx={{
                   cursor: "pointer",
                   borderRadius: "10px",
@@ -260,7 +263,9 @@ const AddClassification = ({ setItem }) => {
             sm={6}
             sx={{ display: "flex", flexDirection: "column", gap: 1 }}
           >
-            <Typography>کسر نمره انضباطی</Typography>
+            <Typography>
+              {!type ? "کسر" : "افزایش"} نمره {!type ? "انضباطی" : "تشویقی"}
+            </Typography>
             <Box
               sx={{
                 width: "80%",
