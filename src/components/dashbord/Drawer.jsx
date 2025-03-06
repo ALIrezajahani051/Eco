@@ -86,7 +86,7 @@ export default function PersistentDrawerLeft({
               paddingBottom: "50px",
               border: "none",
               boxShadow: "none",
-              height: "110vh",
+              height: "120vh",
             },
           }}
         >

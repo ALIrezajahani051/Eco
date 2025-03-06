@@ -24,6 +24,7 @@ import {
   IconlyDelete,
   IconlySquare,
   IconlySearch,
+  IconlyCloseSquare,
   IconlyArrowLeft,
   IconlyMoreSquare,
   IconlyCalendar,
@@ -34,6 +35,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { color } from "framer-motion";
+
 const theme = createTheme({
   typography: {
     fontFamily: "IranSans, Arial, sans-serif",
@@ -46,9 +48,37 @@ const theme = createTheme({
   },
 });
 
+const convertToPersianNumbers = (num) => {
+  return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
+};
+
 const AddClassification = ({ setItem }) => {
+  const [listitems, setListitems] = useState([]);
+  const [mored, setmored] = useState("");
+
   const [type, setType] = useState(false);
   const [date, setDate] = useState("");
+
+  const [openclass, setOpenclass] = useState(false);
+  const [classs, setClass] = useState("");
+
+  const [openlevel, setOpenlevel] = useState(false);
+  const [level, setLevel] = useState("");
+
+  const [openstudent, setOpenstudent] = useState(false);
+  const [student, setStudent] = useState("");
+
+  const [grade, setGrade] = useState(null);
+
+  const setnewitem = () => {
+    if (mored != "") {
+      setListitems([...listitems, mored]);
+    }
+  };
+
+  const removemored = (rkey) => {
+    setListitems((prevItems) => prevItems.filter((_, key) => key !== rkey));
+  };
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -121,33 +151,181 @@ const AddClassification = ({ setItem }) => {
           </Box>
         </Box>
 
-        <Grid container rowSpacing={8} columnSpacing={3}>
-          <Grid item sm={6}>
-            <Typography>نوع مورد</Typography>
-          </Grid>
-
-          <Grid item sm={6}>
-            نوع مورد
-          </Grid>
-
-          <Grid item sm={6}>
-            <Typography>کسر نمره انضباطی</Typography>
+        <Grid container rowSpacing={3.5} columnSpacing={3}>
+          <Grid
+            item
+            sm={6}
+            sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+          >
+            <Typography sx={{ display: "flex" }}>
+              نوع مورد
+              <Typography sx={{ color: "red", marginRight: "4px" }}>
+                *
+              </Typography>
+            </Typography>
             <Box
               sx={{
                 display: "flex",
+                backgroundColor: "#f0f0f0",
+                borderRadius: "10px",
+                justifyContent: "space-evently",
+                flexDirection: "row",
+                width: "100%",
+                alignItems: "center",
+                paddingLeft: "5px",
+              }}
+            >
+              <TextField
+                value={mored}
+                onChange={(e) => {
+                  setmored(e.target.value);
+                }}
+                placeholder="مورد انظباطی موردنظر خود را تایپ کنید"
+                sx={{
+                  cursor: "pointer",
+                  borderRadius: "10px",
+                  justifyContent: "center",
+                  backgroundColor: "#f0f0f0",
+                  width: "90%",
+                  height: "45px",
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      border: "none",
+                    },
+                  },
+                }}
+              />
+
+              <Button onClick={setnewitem} sx={Savebuttonstyle}>
+                ذخیره مورد
+              </Button>
+            </Box>
+          </Grid>
+
+          <Grid item sm={6}>
+            <Box sx={{ display: "flex", gap: 1, flexDirection: "column" }}>
+              <Typography sx={{ display: "flex", gap: "2px" }}>
+                موارد ذخیره شده{" "}
+              </Typography>
+              <Grid container columnGap={1} rowGap={1} sx={{ width: "100%" }}>
+                {listitems.map((item, key) => (
+                  <Grid
+                    item
+                    key={key}
+                    sx={{
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "10px",
+                      fontSize: "0.8rem",
+                      padding: "5px 5px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {item}
+                    </Box>
+                    <Button
+                      disableElevation
+                      disableRipple
+                      disableFocusRipple
+                      onClick={(e) => {
+                        removemored(key);
+                      }}
+                      sx={{
+                        padding: 0,
+                        margin: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-end",
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                        },
+                      }}
+                    >
+                      <IconlyCloseSquare size={20} />
+                    </Button>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </Grid>
+
+          <Grid
+            item
+            sm={6}
+            sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+          >
+            <Typography>کسر نمره انضباطی</Typography>
+            <Box
+              sx={{
+                width: "80%",
+                display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                gap: 2,
               }}
-            ></Box>
+            >
+              <Button
+                onClick={(e) => {
+                  setGrade(0);
+                }}
+                sx={{
+                  ...Gradebuttonstyle,
+                  backgroundColor: grade != 0 ? "#f0f0f0" : "black",
+                  color: grade == 0 ? "white" : "black",
+                }}
+              >
+                {convertToPersianNumbers(0.5)} نمره
+              </Button>
+              <Button
+                onClick={(e) => {
+                  setGrade(1);
+                }}
+                sx={{
+                  ...Gradebuttonstyle,
+                  backgroundColor: grade != 1 ? "#f0f0f0" : "black",
+                  color: grade == 1 ? "white" : "black",
+                }}
+              >
+                {convertToPersianNumbers(1)} نمره
+              </Button>
+              <Button
+                onClick={(e) => {
+                  setGrade(2);
+                }}
+                sx={{
+                  ...Gradebuttonstyle,
+                  backgroundColor: grade != 2 ? "#f0f0f0" : "black",
+                  color: grade == 2 ? "white" : "black",
+                }}
+              >
+                {convertToPersianNumbers(1.5)} نمره
+              </Button>
+              <Button
+                onClick={(e) => {
+                  setGrade(3);
+                }}
+                sx={{
+                  ...Gradebuttonstyle,
+                  backgroundColor: grade != 3 ? "#f0f0f0" : "black",
+                  color: grade == 3 ? "white" : "black",
+                }}
+              >
+                {convertToPersianNumbers(2)} نمره
+              </Button>
+            </Box>
           </Grid>
 
           <Grid item sm={6}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Typography
-                sx={{ display: "flex", alignItems: "center", gap: "2px" }}
-              >
+              <Typography sx={{ display: "flex", alignItems: "center" }}>
                 تاریخ
-                <Typography sx={{ color: "red", marginLeft: "4px" }}>
+                <Typography sx={{ color: "red", marginRight: "4px" }}>
                   *
                 </Typography>
               </Typography>
@@ -162,7 +340,7 @@ const AddClassification = ({ setItem }) => {
                   <TextField
                     onClick={openCalendar}
                     value={value || date || ""}
-                    placeholder="تاریخ مدنظر خود را انتخاب کنید"
+                    placeholder="تاریخ مدنظر را انتخاب کنید"
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -175,7 +353,9 @@ const AddClassification = ({ setItem }) => {
                       borderRadius: "10px",
                       backgroundColor: "#f0f0f0",
                       width: "75%",
-                      height: "50px",
+                      display: "flex",
+                      justifyContent: "center",
+                      height: "45px",
                       "& rmdp-calendar rmdp-rtl": {
                         boxShadow: "none",
                       },
@@ -192,6 +372,180 @@ const AddClassification = ({ setItem }) => {
               />
             </Box>
           </Grid>
+
+          <Grid item sm={6}>
+            <Box>
+              <Typography varient="h5" sx={{ display: "flex" }}>
+                پایه
+                <Typography sx={{ color: "red", marginRight: "4px" }}>
+                  *
+                </Typography>
+              </Typography>
+              <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+                <Select
+                  open={openlevel}
+                  onOpen={() => setOpenlevel(true)}
+                  onClose={() => setOpenlevel(false)}
+                  value={level}
+                  onChange={(e) => setLevel(e.target.value)}
+                  displayEmpty
+                  IconComponent={() =>
+                    openlevel ? (
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
+                    ) : (
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
+                    )
+                  }
+                  sx={{
+                    borderRadius: "10px",
+                    height: "50px",
+                    backgroundColor: "#f0f0f0",
+                    border: "none",
+                    pl: "8px",
+                    boxShadow: "none",
+                    "& fieldset": { border: "none" },
+                    "& .MuiSelect-icon": {
+                      left: "20rem",
+                    },
+                  }}
+                >
+                  <MenuItem value="" disabled>
+                    پایه مد‌نظر را انتخاب کنید
+                  </MenuItem>
+                  <MenuItem value={0}>ابتدایی</MenuItem>
+                  <MenuItem value={1}>متوسطه اول</MenuItem>
+                  <MenuItem value={2}>متوسطه دوم</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+
+          <Grid item sm={6}>
+            <Box>
+              <Typography sx={{ display: "flex" }}>
+                کلاس{" "}
+                <Typography sx={{ color: "red", marginRight: "4px" }}>
+                  *
+                </Typography>
+              </Typography>
+              <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+                <Select
+                  open={openclass}
+                  onOpen={() => setOpenclass(true)}
+                  onClose={() => setOpenclass(false)}
+                  value={classs}
+                  onChange={(e) => setClass(e.target.value)}
+                  displayEmpty
+                  IconComponent={() =>
+                    openclass ? (
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
+                    ) : (
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
+                    )
+                  }
+                  sx={{
+                    borderRadius: "10px",
+                    height: "50px",
+                    backgroundColor: "#f0f0f0",
+                    border: "none",
+                    pl: "8px",
+                    boxShadow: "none",
+                    "& fieldset": { border: "none" },
+                    "& .MuiSelect-icon": {
+                      left: "20rem",
+                    },
+                  }}
+                >
+                  <MenuItem value="" disabled>
+                    کلاس مد‌نظر را انتخاب کنید
+                  </MenuItem>
+                  <MenuItem value={0}>
+                    {convertToPersianNumbers(7) +
+                      "/" +
+                      convertToPersianNumbers(5)}
+                  </MenuItem>
+                  <MenuItem value={1}>
+                    {convertToPersianNumbers(8) +
+                      "/" +
+                      convertToPersianNumbers(1)}
+                  </MenuItem>
+                  <MenuItem value={2}>
+                    {convertToPersianNumbers(10) +
+                      "/" +
+                      convertToPersianNumbers(2)}
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+
+          <Grid item sm={12}>
+            <Box>
+              <Typography sx={{ display: "flex" }}>
+                دانش‌آموز{" "}
+                <Typography sx={{ color: "red", marginRight: "4px" }}>
+                  *
+                </Typography>
+              </Typography>
+              <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+                <Select
+                  open={openstudent}
+                  onOpen={() => setOpenstudent(true)}
+                  onClose={() => setOpenstudent(false)}
+                  value={student}
+                  onChange={(e) => setStudent(e.target.value)}
+                  displayEmpty
+                  IconComponent={() =>
+                    openstudent ? (
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
+                    ) : (
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
+                    )
+                  }
+                  sx={{
+                    borderRadius: "10px",
+                    height: "50px",
+                    backgroundColor: "#f0f0f0",
+                    border: "none",
+                    pl: "8px",
+                    boxShadow: "none",
+                    "& fieldset": { border: "none" },
+                    "& .MuiSelect-icon": {
+                      left: "20rem",
+                    },
+                  }}
+                >
+                  <MenuItem value="" disabled>
+                    دانش‌آموز مدنظر را انتخاب کنید{" "}
+                  </MenuItem>
+                  <MenuItem value={0}>محمد بروجنی</MenuItem>
+                  <MenuItem value={1}>صدرا کاظمی</MenuItem>
+                  <MenuItem value={2}>میلاد پوراکبری</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+
+          <Grid item sm={12}>
+            <Button
+              disabled={
+                type === "" || date === "" || classs === "" || level === ""
+              }
+              sx={{
+                marginTop: "4%",
+                backgroundColor:
+                  type === "" || date === "" || classs === "" || level === ""
+                    ? "gray"
+                    : "#417fee",
+                width: "100%",
+                color: "white",
+                borderRadius: "10px",
+                padding: "13px",
+              }}
+            >
+              <Typography sx={{ fontSize: "15px" }}>ثبت و تایید</Typography>
+            </Button>
+          </Grid>
         </Grid>
       </Box>
     </ThemeProvider>
@@ -199,3 +553,25 @@ const AddClassification = ({ setItem }) => {
 };
 
 export default AddClassification;
+
+const Gradebuttonstyle = {
+  padding: "8px 20px",
+  borderRadius: "10px",
+  boxShadow: "none",
+  width: "80px",
+  height: "45px",
+  textWrap: "nowrap",
+  fontSize: "0.80rem",
+};
+
+const Savebuttonstyle = {
+  padding: "8px 12px",
+  backgroundColor: "#417EEE",
+  borderRadius: "10px",
+  color: "white",
+  boxShadow: "none",
+  height: "78%",
+  textWrap: "nowrap",
+  // fontFamily: "Regular",
+  fontSize: "0.75rem",
+};

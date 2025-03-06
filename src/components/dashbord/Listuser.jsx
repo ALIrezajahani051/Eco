@@ -22,6 +22,12 @@ import {
   IconlyMoreSquare,
 } from "../../../public/Icons";
 import AddUser from "./AddUser";
+
+const toPersianNumber = (number) => {
+  const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  return number.toString().replace(/\d/g, (x) => persianNumbers[x]);
+};
+
 export default function Listuser() {
   const [item, setItem] = useState(null);
   return (
@@ -153,13 +159,13 @@ export default function Listuser() {
                         />
                       </Box>
                     </TableCell>
-                    <TableCell sx={rowStyle}>12345677789</TableCell>
+                    <TableCell sx={rowStyle}>{toPersianNumber("12345677789")}</TableCell>
                     <TableCell sx={rowStyle}>مدیر</TableCell>
                     <TableCell sx={rowStyle}>علی</TableCell>
                     <TableCell sx={rowStyle}>رضایی</TableCell>
-                    <TableCell sx={rowStyle}>09121234567</TableCell>
+                    <TableCell sx={rowStyle}>{toPersianNumber("09121234567")}</TableCell>
                     <TableCell sx={rowStyle}>کلاس A</TableCell>
-                    <TableCell sx={rowStyle}>1400/02/01</TableCell>
+                    <TableCell sx={rowStyle}>{toPersianNumber("1400/02/01")}</TableCell>
                     <TableCell>
                       <IconlyMoreSquare size={20} />
                     </TableCell>

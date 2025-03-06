@@ -160,9 +160,15 @@ const Addcheck = ({ setItem }) => {
                     <MenuItem value="" disabled>
                       پایه مد‌نظر را انتخاب کنید
                     </MenuItem>
-                    <MenuItem value="پایه 1">پایه 1</MenuItem>
-                    <MenuItem value="پایه 2">پایه 2</MenuItem>
-                    <MenuItem value="پایه 3">پایه 3</MenuItem>
+                    <MenuItem value="پایه 1">
+                      پایه {convertToPersianNumbers(1)}
+                    </MenuItem>
+                    <MenuItem value="پایه 2">
+                      پایه {convertToPersianNumbers(2)}
+                    </MenuItem>
+                    <MenuItem value="پایه 3">
+                      پایه {convertToPersianNumbers(3)}
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -197,9 +203,15 @@ const Addcheck = ({ setItem }) => {
                     <MenuItem value="" disabled>
                       کلاس مد‌نظر را انتخاب کنید
                     </MenuItem>
-                    <MenuItem value="کلاس 1">کلاس 1</MenuItem>
-                    <MenuItem value="کلاس 2">کلاس 2</MenuItem>
-                    <MenuItem value="کلاس 3">کلاس 3</MenuItem>
+                    <MenuItem value="کلاس 1">
+                      کلاس {convertToPersianNumbers(1)}
+                    </MenuItem>
+                    <MenuItem value="کلاس 2">
+                      کلاس {convertToPersianNumbers(2)}
+                    </MenuItem>
+                    <MenuItem value="کلاس 3">
+                      کلاس {convertToPersianNumbers(3)}
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
