@@ -18,7 +18,7 @@ import {
   IconlySquare,
   IconlySearch,
   IconlyMoreSquare,
-} from "../../../public/Icons"; // فرض بر این است که آیکون‌ها از این مسیر import می‌شوند
+} from "../../../public/Icons"; 
 import AddClassification from "./AddClassification";
 const theme = createTheme({
   typography: {

@@ -86,9 +86,9 @@ const AddClassificationteacher = ({ setItem }) => {
                   onChange={(e) => setLevel(e.target.value)}
                   IconComponent={() =>
                     openlevel ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -128,9 +128,9 @@ const AddClassificationteacher = ({ setItem }) => {
                   displayEmpty
                   IconComponent={() =>
                     openclass ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -169,9 +169,9 @@ const AddClassificationteacher = ({ setItem }) => {
                   displayEmpty
                   IconComponent={() =>
                     openteacher ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -211,9 +211,9 @@ const AddClassificationteacher = ({ setItem }) => {
                   displayEmpty
                   IconComponent={() =>
                     openteacher ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{

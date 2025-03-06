@@ -86,9 +86,9 @@ const AddClassification = ({ setItem }) => {
                   onChange={(e) => setLevel(e.target.value)}
                   IconComponent={() =>
                     openlevel ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -128,9 +128,9 @@ const AddClassification = ({ setItem }) => {
                   displayEmpty
                   IconComponent={() =>
                     openclass ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -169,9 +169,9 @@ const AddClassification = ({ setItem }) => {
                   displayEmpty
                   IconComponent={() =>
                     openteacher ? (
-                      <KeyboardArrowUpIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowUpIcon sx={{ fontSize: "1.6rem" }} />
                     ) : (
-                      <KeyboardArrowDownIcon sx={{ fontSize: "1.2rem" }} />
+                      <KeyboardArrowDownIcon sx={{ fontSize: "1.6rem" }} />
                     )
                   }
                   sx={{
@@ -195,6 +195,20 @@ const AddClassification = ({ setItem }) => {
                   <MenuItem value={2}>میلاد زبردست</MenuItem>
                 </Select>
               </FormControl>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "row-reverse",
+                  marginTop: "10px",
+                  gap: "5px",
+                }}
+              >
+                <Typography varient="h6" sx={{ fontSize: "0.8rem" }}>
+                  انتخاب همه دانش‌آموزان
+                </Typography>
+                <IconlySquare size={20} />
+              </Box>
             </Box>
           </Grid>
           <Grid item sm={12}>

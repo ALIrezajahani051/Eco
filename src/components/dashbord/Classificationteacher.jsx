@@ -102,9 +102,7 @@ const Classificationteacher = () => {
           justifyContent: "center",
         }}
       >
-        {!loading && item == 0 && (
-          <AddClassificationteacher setItem={setItem} />
-        )}
+        {item == 0 && <AddClassificationteacher setItem={setItem} />}
         {item == null && (
           <>
             <Box>
@@ -188,7 +186,7 @@ const Classificationteacher = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        fontSize: "15px",
+                        fontSize: "16px",
                         gap: 1,
                         position: "absolute",
                         top: "50%",
@@ -196,7 +194,7 @@ const Classificationteacher = () => {
                         transform: "translate(-50%, -50%)",
                       }}
                     >
-                      در حال بارگذاری <CircularProgress size={24} />
+                      در حال بارگذاری <CircularProgress size={28} />
                     </Typography>
                   </>
                 )}

@@ -5,7 +5,8 @@ import Topbar from "./dashbord/Topbar";
 import Users from "./dashbord/Users";
 
 import { Box } from "@mui/material";
-
+import Checkabs from "./dashbord/Checkabs";
+import Disciplinary from "./dashbord/Disciplinary";
 function Panel() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
@@ -35,6 +36,8 @@ function Panel() {
         <Topbar open={open} />
         {active == 0 && <Dashboard />}
         {active == 1 && <Users open={open} />}
+        {active == 3 && <Checkabs open={open} />}
+        {active == 2 && <Disciplinary open={open} />}
       </Box>
     </Box>
   );

@@ -86,7 +86,7 @@ export default function PersistentDrawerLeft({
               paddingBottom: "50px",
               border: "none",
               boxShadow: "none",
-              height:"110vh"
+              height: "110vh",
             },
           }}
         >
@@ -223,7 +223,6 @@ export default function PersistentDrawerLeft({
                     outline: "2px solid #f0f0f0",
                     backgroundColor: "#f0f0f0",
                     borderRadius: "50%",
-                    // padding: "2px",
                     minWidth: "30px",
                     height: "30px",
                   }}
