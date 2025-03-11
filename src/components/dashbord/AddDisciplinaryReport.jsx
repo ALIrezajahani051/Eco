@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -34,7 +34,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import { color } from "framer-motion";
+import Autocomplete from "@mui/material/Autocomplete";
 
 const theme = createTheme({
   typography: {
@@ -52,7 +52,7 @@ const convertToPersianNumbers = (num) => {
   return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
 };
 
-const AddClassification = ({ setItem }) => {
+const AddDisciplinaryReport = ({ setItem }) => {
   const [listitems, setListitems] = useState([]);
   const [mored, setmored] = useState("");
 
@@ -70,6 +70,8 @@ const AddClassification = ({ setItem }) => {
 
   const [grade, setGrade] = useState(null);
 
+  const [students, setStudents] = useState([]);
+
   const setnewitem = () => {
     if (mored != "") {
       setListitems([...listitems, mored]);
@@ -79,6 +81,24 @@ const AddClassification = ({ setItem }) => {
   const removemored = (rkey) => {
     setListitems((prevItems) => prevItems.filter((_, key) => key !== rkey));
   };
+
+  useEffect(() => {
+    // fetch based on classs for get students
+    setStudents([
+      { name: "علیرضا" },
+      { name: "علیرضا حسینی" },
+      { name: "علیرضا محمدی" },
+      { name: "علیرضایی" },
+      { name: "علیرضا.م" },
+      { name: "علیرضا 2" },
+      { name: "علیرضا علیپور" },
+      { name: "علیرضا - کوچک" },
+      { name: "علیرضا بزرگ" },
+      { name: "علیرضا (قدیم)" },
+      { name: "محمد" },
+    ]);
+  }, [classs]);
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -281,7 +301,7 @@ const AddClassification = ({ setItem }) => {
                 }}
                 sx={{
                   ...Gradebuttonstyle,
-                  backgroundColor: grade != 0 ? "#f0f0f0" : "black",
+                  backgroundColor: grade != 0 ? "#f0f0f0" : "#417EEE",
                   color: grade == 0 ? "white" : "black",
                 }}
               >
@@ -293,7 +313,7 @@ const AddClassification = ({ setItem }) => {
                 }}
                 sx={{
                   ...Gradebuttonstyle,
-                  backgroundColor: grade != 1 ? "#f0f0f0" : "black",
+                  backgroundColor: grade != 1 ? "#f0f0f0" : "#417EEE",
                   color: grade == 1 ? "white" : "black",
                 }}
               >
@@ -305,7 +325,7 @@ const AddClassification = ({ setItem }) => {
                 }}
                 sx={{
                   ...Gradebuttonstyle,
-                  backgroundColor: grade != 2 ? "#f0f0f0" : "black",
+                  backgroundColor: grade != 2 ? "#f0f0f0" : "#417EEE",
                   color: grade == 2 ? "white" : "black",
                 }}
               >
@@ -317,7 +337,7 @@ const AddClassification = ({ setItem }) => {
                 }}
                 sx={{
                   ...Gradebuttonstyle,
-                  backgroundColor: grade != 3 ? "#f0f0f0" : "black",
+                  backgroundColor: grade != 3 ? "#f0f0f0" : "#417EEE",
                   color: grade == 3 ? "white" : "black",
                 }}
               >
@@ -453,7 +473,7 @@ const AddClassification = ({ setItem }) => {
                     height: "50px",
                     backgroundColor: "#f0f0f0",
                     border: "none",
-                    pl: "8px",
+                    paddingRight: "0px",
                     boxShadow: "none",
                     "& fieldset": { border: "none" },
                     "& .MuiSelect-icon": {
@@ -492,7 +512,7 @@ const AddClassification = ({ setItem }) => {
                   *
                 </Typography>
               </Typography>
-              <FormControl sx={{ width: "100%", marginTop: "10px" }}>
+              {/* <FormControl sx={{ width: "100%", marginTop: "10px" }}>
                 <Select
                   open={openstudent}
                   onOpen={() => setOpenstudent(true)}
@@ -527,7 +547,38 @@ const AddClassification = ({ setItem }) => {
                   <MenuItem value={1}>صدرا کاظمی</MenuItem>
                   <MenuItem value={2}>میلاد پوراکبری</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
+              <Autocomplete
+                disabled={
+                  classs === "" ||
+                  classs === null ||
+                  classs === undefined ||
+                  isNaN(classs)
+                }
+                disablePortal
+                disableClearable
+                freeSolo={false}
+                noOptionsText="موردی یافت نشد"
+                options={students.map((student) => student.name)}
+                sx={{
+                  borderRadius: "10px",
+                  backgroundColor: "#f0f0f0",
+                  textAlign: "right",
+                  height: "50px",
+                  mt: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  boxShadow: "none",
+                  "& fieldset": { border: "none" },
+                  "& .MuiSvgIcon-root": { display: "none" },
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    placeholder="دانش‌آموز مدنظر را انتخاب کنید"
+                    {...params}
+                  />
+                )}
+              />
             </Box>
           </Grid>
 
@@ -557,7 +608,7 @@ const AddClassification = ({ setItem }) => {
   );
 };
 
-export default AddClassification;
+export default AddDisciplinaryReport;
 
 const Gradebuttonstyle = {
   padding: "8px 20px",
