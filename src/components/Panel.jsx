@@ -7,6 +7,9 @@ import Users from "./dashbord/Users";
 import { Box } from "@mui/material";
 import Checkabs from "./dashbord/Checkabs";
 import Disciplinary from "./dashbord/Disciplinary";
+import QuestionBank from "./dashbord/QuestionBank";
+import ChooseMajor from "./dashbord/ChooseMajor";
+
 function Panel() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
@@ -38,6 +41,8 @@ function Panel() {
         {active == 1 && <Users open={open} />}
         {active == 3 && <Checkabs open={open} />}
         {active == 2 && <Disciplinary open={open} />}
+        {active == 10 && <QuestionBank open={open} />}
+        {active == 12 && <ChooseMajor open={open} />}
       </Box>
     </Box>
   );

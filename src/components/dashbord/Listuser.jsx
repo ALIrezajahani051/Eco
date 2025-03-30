@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -24,12 +24,40 @@ import {
 import AddUser from "./AddUser";
 
 const toPersianNumber = (number) => {
-  const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  const persianNumbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
   return number.toString().replace(/\d/g, (x) => persianNumbers[x]);
 };
 
 export default function Listuser() {
   const [item, setItem] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1MzQ5MDg2LCJpYXQiOjE3NDI3NTcwODYsImp0aSI6Ijc3NmUzM2RkYzYzNzRlYjRhNDRhOWZmNjllZmUwOWIzIiwidXNlcl9pZCI6MX0.xHPvFLh3C445qxSaBgX6-kW9aga3D3jaqdNN1YOWmAw";
+      try {
+        const response = await fetch("127.0.0.1:8000/users", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUsers(data);
+        } else {
+          console.log("Failed to fetch users.");
+        }
+      } catch (error) {
+        console.log("BEGA");
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <Box
       sx={{
@@ -136,9 +164,9 @@ export default function Listuser() {
               </TableHead>
 
               <TableBody>
-                {[1, 2, 3, 4, 5, 6, 7].map((item, index) => (
+                {users.map((user) => (
                   <TableRow
-                    key={index}
+                    key={user.id}
                     sx={{
                       "& td, & th": {
                         borderBottom: "2px dashed #c0c8d0",
@@ -159,13 +187,21 @@ export default function Listuser() {
                         />
                       </Box>
                     </TableCell>
-                    <TableCell sx={rowStyle}>{toPersianNumber("12345677789")}</TableCell>
-                    <TableCell sx={rowStyle}>مدیر</TableCell>
-                    <TableCell sx={rowStyle}>علی</TableCell>
-                    <TableCell sx={rowStyle}>رضایی</TableCell>
-                    <TableCell sx={rowStyle}>{toPersianNumber("09121234567")}</TableCell>
-                    <TableCell sx={rowStyle}>کلاس A</TableCell>
-                    <TableCell sx={rowStyle}>{toPersianNumber("1400/02/01")}</TableCell>
+                    <TableCell sx={rowStyle}>
+                      {toPersianNumber("12345677789")}
+                    </TableCell>
+                    <TableCell sx={rowStyle}>{user.role}</TableCell>
+                    <TableCell sx={rowStyle}>{user.first_name}</TableCell>
+                    <TableCell sx={rowStyle}>{user.last_name}</TableCell>
+                    <TableCell sx={rowStyle}>
+                      {toPersianNumber(user.phone)}
+                    </TableCell>
+                    <TableCell
+                      sx={rowStyle}
+                    >{`${user.classroom.grade} / ${user.classroom.classification} `}</TableCell>
+                    <TableCell sx={rowStyle}>
+                      {toPersianNumber(user.last_login)}
+                    </TableCell>
                     <TableCell>
                       <IconlyMoreSquare size={20} />
                     </TableCell>
@@ -183,7 +219,7 @@ export default function Listuser() {
 const buttonStyle = {
   display: "flex",
   alignItems: "center",
-  justifyContent:"center",
+  justifyContent: "center",
   gap: "8px",
   backgroundColor: "#003089",
   borderRadius: "10px",

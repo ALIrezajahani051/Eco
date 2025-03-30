@@ -200,6 +200,11 @@ export default function PersistentDrawerLeft({
                 icon: <IconlyWallet />,
                 iconbold: <IconlyWalletbold />,
               },
+              {
+                label:"انتخاب رشته",
+                icon: <IconlyBook2 />,
+                iconbold : <IconlyBook2 />,
+              }
             ].map((item, index) => (
               <ListItem
                 button
