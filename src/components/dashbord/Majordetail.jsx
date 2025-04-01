@@ -1,13 +1,34 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { IconlyDrag } from "../../../public/Icons";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 const convertToPersianNumbers = (num) => {
   return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
 };
-export default function Majordetail({ major, backgroundColor = "#FBFBFB" }) {
+
+export default function Majordetail({
+  index,
+  major,
+  id,
+  backgroundColor = "#FBFBFB",
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+
+  const style = {
+    transition,
+    transform: transform ? CSS.Transform.toString(transform) : undefined,
+  };
+
   return (
     <Box
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
       sx={{
+        ...style,
         p: "25px 15px",
         backgroundColor: backgroundColor,
         borderRadius: "10px",
@@ -15,9 +36,13 @@ export default function Majordetail({ major, backgroundColor = "#FBFBFB" }) {
         alignItems: "center",
         justifyContent: "space-evenly",
         width: "100%",
+        touchAction: "none",
       }}
     >
-      <Typography sx={{ width: "4%", cursor: "grab", textAlign: "center" }}>
+      <Typography sx={{ width: "2%" }}>
+        {convertToPersianNumbers(index)}
+      </Typography>
+      <Typography sx={{ width: "4%", cursor: "grab",display:"flex",alignItems:"center",justifyContent:"center" }}>
         <IconlyDrag size={20} />
       </Typography>
       <Typography sx={{ width: "20%", textAlign: "center" }}>
@@ -29,9 +54,8 @@ export default function Majordetail({ major, backgroundColor = "#FBFBFB" }) {
       <Typography
         sx={{ width: "15%", fontSize: "0.8rem", textAlign: "center" }}
       >
-        {major.major_type == "daytime" ? "روزانه" : "نیمسال‌دوم"}
+        {major.major_type === "daytime" ? "روزانه" : "نیمسال‌دوم"}
       </Typography>
-
       <Typography sx={{ width: "10%", textAlign: "center" }}>
         {convertToPersianNumbers(major.code)}
       </Typography>
@@ -46,7 +70,7 @@ export default function Majordetail({ major, backgroundColor = "#FBFBFB" }) {
           textAlign: "center",
         }}
       >
-        {major.description != null ? major.description : "-"}
+        {major.description ? major.description : "-"}
       </Typography>
     </Box>
   );

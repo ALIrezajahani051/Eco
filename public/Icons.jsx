@@ -67,7 +67,6 @@ export const IconlyEdit = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Edit</title>
       <g
         id="Iconly/Light-Outline/Edit"
         stroke="none"
@@ -97,7 +96,6 @@ export const IconlyCalendar = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Calendar</title>
       <g
         id="Iconly/Light-Outline/Calendar"
         stroke="none"
@@ -127,7 +125,6 @@ export const IconlyWallet = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Wallet</title>
       <g
         id="Iconly/Light/Wallet"
         stroke="none"
@@ -182,7 +179,6 @@ export const IconlyGame = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Game</title>
       <g
         id="Iconly/Light/Game"
         stroke="none"
@@ -290,7 +286,6 @@ export const IconlyDocument = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Document</title>
       <g
         id="Iconly/Light-Outline/Document"
         stroke={color}
@@ -497,7 +492,6 @@ export const IconlyArrowLeft2 = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Arrow - Left 2</title>
       <g
         id="Iconly/Light/Arrow---Left-2"
         stroke="none"
@@ -530,7 +524,6 @@ export const IconlyReport = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Document</title>
       <g
         id="Iconly/Light-Outline/Document"
         stroke="none"
@@ -559,7 +552,6 @@ export const IconlyReportBold = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/Document</title>
       <g
         id="Iconly/Bold/Document"
         stroke="none"
@@ -590,7 +582,6 @@ export const Iconlyuser = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/3 User</title>
       <g
         id="Iconly/Light/3-User"
         stroke="none"
@@ -646,7 +637,6 @@ export const Iconlyuserbold = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/3 User</title>
       <g
         id="Iconly/Bold/3-User"
         stroke="none"
@@ -680,7 +670,6 @@ export const IconlyHomebold = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/Home</title>
       <g
         id="Iconly/Bold/Home"
         stroke="none"
@@ -730,7 +719,6 @@ export const IconlyCalendarbold = ({ size = 22, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/Calendar</title>
       <g
         id="Iconly/Bold/Calendar"
         stroke="none"
@@ -761,7 +749,6 @@ export const IconlyWalletbold = ({ size = 20, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/Wallet</title>
       <g
         id="Iconly/Bold/Wallet"
         stroke="none"
@@ -792,7 +779,6 @@ export const IconlyEditbold = ({ size = 21.5, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Bold/Edit</title>
       <g
         id="Iconly/Bold/Edit"
         stroke="none"
@@ -842,7 +828,6 @@ export const IconlyArrowDown2 = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Two-tone/Arrow - Down 2</title>
       <g
         id="Iconly/Two-tone/Arrow---Down-2"
         stroke="none"
@@ -900,7 +885,6 @@ export const IconlySearch = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Search</title>
       <g
         id="Iconly/Light/Search"
         stroke="none"
@@ -976,7 +960,6 @@ export const IconlyFilter = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Filter</title>
       <g
         id="Iconly/Light/Filter"
         stroke="none"
@@ -1061,7 +1044,6 @@ export const IconlyDelete = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Delete</title>
       <g
         id="Iconly/Light/Delete"
         stroke="none"
@@ -1127,7 +1109,6 @@ export const IconlyMoreSquare = ({ size = 22, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/More Square</title>
       <g
         id="Iconly/Light/More-Square"
         stroke="none"
@@ -1187,7 +1168,6 @@ export const IconlyUpload = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Upload</title>
       <g
         id="Iconly/Light-Outline/Upload"
         stroke="none"
@@ -1216,7 +1196,6 @@ export const IconlyArrowLeft = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Arrow - Left</title>
       <g
         id="Iconly/Light-Outline/Arrow---Left"
         stroke="none"
@@ -1275,7 +1254,6 @@ export const IconlyCall = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Call</title>
       <g
         id="Iconly/Light/Call"
         stroke="none"
@@ -1311,7 +1289,6 @@ export const IconlyLock = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light/Lock</title>
       <g
         id="Iconly/Light/Lock"
         stroke="none"
@@ -1358,7 +1335,6 @@ export const IconlyShow = ({ size = 24, color = "#000000" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <title>Iconly/Light-Outline/Show</title>
       <g
         id="Iconly/Light-Outline/Show"
         stroke="none"
@@ -1681,6 +1657,50 @@ export const IconlyDown = ({ size = 24, color = "#000000" }) => {
         d="M5.30506 8.30602C4.89748 8.71405 4.89748 9.37559 5.30506 9.78361L11.2089 15.694C11.4372 15.9225 11.745 16.0231 12.0432 15.9956C12.3122 15.9969 12.5816 15.8949 12.7868 15.6897L18.6941 9.78283C19.102 9.37504 19.102 8.71388 18.6941 8.3061C18.2863 7.89831 17.6251 7.89831 17.2173 8.3061L11.9962 13.5269L6.78103 8.30602C6.37345 7.89799 5.71263 7.89799 5.30506 8.30602Z"
         fill="black"
       />
+    </svg>
+  );
+};
+
+export const IconlyPrinter = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      fill={color}
+      class="bi bi-printer"
+      viewBox="0 0 16 16"
+    >
+      <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+      <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+    </svg>
+  );
+};
+
+export const IconlyFilter2 = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
+      <g
+        id="Iconly/Light-Outline/Filter-2"
+        stroke="none"
+        strokeWidth="1.5"
+        fill="none"
+        fillRule="evenodd"
+      >
+        <g id="Filter-2" transform="translate(2.000000, 2.000000)" fill={color}>
+          <path
+            d="M6.7734,9.5987 C6.7914,9.6147 6.8084,9.6297 6.8254,9.6477 C7.9044,10.7537 8.4994,12.2187 8.4994,13.7737 L8.4994,17.7577 L10.7354,16.5397 C10.9114,16.4437 11.0204,16.2557 11.0204,16.0487 L11.0204,13.7617 C11.0204,12.2127 11.6094,10.7527 12.6784,9.6527 L17.5154,4.5077 C17.8284,4.1747 18.0004,3.7377 18.0004,3.2767 L18.0004,2.3407 C18.0004,1.8767 17.6344,1.4997 17.1864,1.4997 L2.3154,1.4997 C1.8664,1.4997 1.5004,1.8767 1.5004,2.3407 L1.5004,3.2767 C1.5004,3.7377 1.6724,4.1747 1.9854,4.5067 L6.7734,9.5987 Z M8.1464,19.5007 C7.9444,19.5007 7.7444,19.4467 7.5624,19.3387 C7.2104,19.1287 6.9994,18.7577 6.9994,18.3457 L6.9994,13.7737 C6.9994,12.6387 6.5764,11.5697 5.8054,10.7507 C5.7824,10.7317 5.7594,10.7107 5.7394,10.6887 L0.8934,5.5357 C0.3174,4.9237 0.0004,4.1207 0.0004,3.2767 L0.0004,2.3407 C0.0004,1.0497 1.0394,-0.0003 2.3154,-0.0003 L17.1864,-0.0003 C18.4614,-0.0003 19.5004,1.0497 19.5004,2.3407 L19.5004,3.2767 C19.5004,4.1197 19.1834,4.9217 18.6094,5.5347 L13.7624,10.6887 C12.9594,11.5167 12.5204,12.6057 12.5204,13.7617 L12.5204,16.0487 C12.5204,16.8047 12.1114,17.4967 11.4534,17.8567 L8.6924,19.3607 C8.5204,19.4537 8.3334,19.5007 8.1464,19.5007 L8.1464,19.5007 Z"
+            id="Fill-1"
+          ></path>
+        </g>
+      </g>
     </svg>
   );
 };

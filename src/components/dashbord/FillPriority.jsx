@@ -51,7 +51,7 @@ const rasters = [
 
 const PriorityField = React.memo(({ label, options }) => (
   <Box sx={{ width: "100%" }}>
-    <Typography sx={{ marginBottom: "5px" }}>{label}:</Typography>
+    <Typography sx={{ marginBottom: "5px" }}>{label} :</Typography>
     <Autocomplete
       noOptionsText="مورد یافت نشد"
       popupIcon={<IconlyDown size={21} />}

@@ -10,7 +10,7 @@ export default function Majortitle() {
       sx={{
         position: "sticky",
         top: "2px",
-        p: "25px 15px",
+        p: "20px 15px",
         mb: "10px",
         background:
           "linear-gradient(150deg, rgba(89,165,167,0.15) 10%, rgba(0,129,255,0.15) 73%)",
@@ -23,6 +23,8 @@ export default function Majortitle() {
         width: "100%",
       }}
     >
+      <Typography sx={{ width: "2%", textAlign: "center" }}>
+      </Typography>
       <Typography sx={{ width: "4%", cursor: "grab", textAlign: "center" }}>
         {/* <IconlyDrag size={20} /> */}
       </Typography>

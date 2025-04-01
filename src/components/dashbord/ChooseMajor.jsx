@@ -160,6 +160,8 @@ export default function ChooseMajor() {
               >
                 <Typography variant="h6">راهنمای استفاده:</Typography>
                 <Typography>
+- این سامانه صرفا به عنوان تسهیل دهنده اولویت ها ایجاد شده است برای انتخاب در موعد مقرر به سایت اصلی جهت انتخاب رشته مراجعه کنید.                </Typography>
+                <Typography>
                   - با انتخاب هر یک از دکمه‌های بالا، اولویت خود را تعیین کنید.
                 </Typography>
                 <Typography>

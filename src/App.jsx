@@ -10,6 +10,7 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Panel from "./components/Panel";
+import FilterChoose from "./components/dashbord/FilterChoose"
 
 function App() {
   return (
@@ -52,6 +53,15 @@ function App() {
             element={
               <>
                 <Panel />
+              </>
+            }
+          />
+
+          <Route
+            path="/filtering"
+            element={
+              <>
+                <FilterChoose />
               </>
             }
           />
