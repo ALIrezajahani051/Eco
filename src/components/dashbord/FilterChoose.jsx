@@ -53,6 +53,7 @@ const items = [
       "قم",
       "رشت",
       "قزوین",
+      "شهر خیلی بزرگ",
     ],
   },
   {
@@ -96,12 +97,18 @@ const PriorityField = React.memo(({ label, options }) => (
   <Box sx={{ width: "100%" }}>
     <Typography sx={{ marginBottom: "5px" }}>{label} :</Typography>
     <Autocomplete
+      multiple
       noOptionsText="مورد یافت نشد"
       popupIcon={<IconlyDown size={21} />}
       options={options}
       //   defaultValue={options[0]}
       autoComplete
       getOptionLabel={(option) => option}
+      sx={{
+        "& .MuiChip-root": {
+          paddingLeft: "10px",
+        },
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -156,6 +163,31 @@ export default function FilterChoose({}) {
         >
           <Box sx={{ flex: 1 }}>
             <Typography variant="h6">جستجوی رشته</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 1.5,
+                marginBottom: "2%",
+                marginTop: "2%",
+              }}
+            >
+              <Typography variant="h6">راهنمای استفاده:</Typography>
+              <Typography sx={{ display: "flex", gap: 0.5 }}>
+                - با انتخاب هر یک از موارد جستجو بر اساس در نظر گرفتن شرایط مد
+                نظر انجام خواهد شد.
+              </Typography>
+              <Typography>
+                - در صورت انتخاب نکردن هر مورد در نظر گرفتن شرایط برای آن نادیده
+                خواهد گرفته شد .
+              </Typography>
+              <Typography>
+                - در هر بخش میتوانید بیش از یک مورد انتخاب کنید.
+              </Typography>
+              <Typography>
+                - با کلیک بر روی کد رشته ، کد کپی خواهد شد.
+              </Typography>
+            </Box>
             <Grid container spacing={3} sx={{ marginTop: "5px" }}>
               {items.map((item, index) => (
                 <Grid item xs={6} sm={6} md={6} key={index}>
@@ -164,14 +196,18 @@ export default function FilterChoose({}) {
               ))}
             </Grid>
           </Box>
-          <Button sx={{
-            marginTop:"30px",
-            width:"15%",
-            padding:"10px 25px 10px 25px",
-            color:"white",
-            backgroundColor:"#FF9B17",
-            borderRadius:"10px",
-          }}>جستجو</Button>
+          <Button
+            sx={{
+              marginTop: "30px",
+              width: "15%",
+              padding: "10px 25px 10px 25px",
+              color: "white",
+              backgroundColor: "#FF9B17",
+              borderRadius: "10px",
+            }}
+          >
+            جستجو
+          </Button>
           <Box
             sx={{
               marginTop: "30px",
@@ -183,7 +219,11 @@ export default function FilterChoose({}) {
               variant="h6"
               sx={{ display: "flex", alignItems: "center", gap: 0.5 }}
             >
-              نتیجه جستجو <IconlySearch size={20} />:
+              <IconlySearch size={20} />
+              نتیجه جستجو :
+            </Typography>
+            <Typography sx={{ m: "5px" }}>
+              {convertToPersianNumbers(5)} مورد یافت شد.
             </Typography>
             <TableContainer
               sx={{
@@ -192,28 +232,24 @@ export default function FilterChoose({}) {
                 padding: "10px",
               }}
             >
-              <Table stickyHeader>
+              <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ textAlign: "center" }}>
-                      نام دانشگاه
-                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>دانشگاه</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>شهر</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>رشته</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>تیپ</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>جنسیت</TableCell>
-                    <TableCell
-                      sx={{ textAlign: "center", fontSize: "0.75rem" }}
-                    >
-                      نوع دانشگاه
-                    </TableCell>
+                    <TableCell sx={{ textAlign: "center" }}>نوع</TableCell>
                     <TableCell
                       sx={{ textAlign: "center", fontSize: "0.75rem" }}
                     >
                       دوره تحصیلی
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>خوابگاه</TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>
+                    <TableCell
+                      sx={{ textAlign: "center", fontSize: "0.75rem" }}
+                    >
                       نحوه پذیرش
                     </TableCell>
                     <TableCell sx={{ textAlign: "center" }}>کد رشته</TableCell>
@@ -221,6 +257,78 @@ export default function FilterChoose({}) {
                 </TableHead>
                 <TableBody>
                   {[
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
+                    {
+                      name: "دانشگاه تهران",
+                      city: "تهران",
+                      major: "مهندسی برق",
+                      type: "دولتی",
+                      level: "کارشناسی",
+                      dorm: "دارد",
+                      gender: "مرد",
+                      tier: "تیپ ۱",
+                      admission: "روزانه",
+                      code: "12345",
+                    },
                     {
                       name: "دانشگاه تهران",
                       city: "تهران",
@@ -285,38 +393,56 @@ export default function FilterChoose({}) {
                     <TableRow
                       sx={{
                         "& th, & td": {
-                          padding: "17px",
+                          padding: "10px",
 
                           borderBottom: "2px dashed rgb(212, 201, 190,0.6)",
                         },
                       }}
                       key={index}
                     >
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.name}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.city}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.major}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.tier}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.gender}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.type}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.level}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.dorm}
                       </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
+                      <TableCell
+                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
+                      >
                         {uni.admission}
                       </TableCell>
                       <TableCell
@@ -335,11 +461,11 @@ export default function FilterChoose({}) {
                             className="copyalert"
                             sx={{
                               position: "absolute",
-                              top: "20%",
+                              top: "15%",
                               right: "-45px",
                               fontSize: "0.8rem",
                               padding: "6px",
-                              backgroundColor: "black",
+                              backgroundColor: "#2C2C2C",
                               borderRadius: "10px",
                               color: "white",
                             }}
@@ -349,10 +475,10 @@ export default function FilterChoose({}) {
                                 position: "absolute",
                                 width: "10px",
                                 height: "10px",
-                                backgroundColor: "black",
+                                backgroundColor: "#2C2C2C",
                                 top: "50%",
                                 borderRadius: "3px",
-                                transform: "translate(-45%,-50%) rotate(45deg)",
+                                transform: "translate(-40%,-50%) rotate(45deg)",
                                 left: 0,
                               }}
                             />

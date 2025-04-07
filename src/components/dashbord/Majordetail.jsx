@@ -9,6 +9,8 @@ const convertToPersianNumbers = (num) => {
 };
 
 export default function Majordetail({
+  onClickAction,
+  contextAction,
   index,
   major,
   id,
@@ -24,6 +26,8 @@ export default function Majordetail({
 
   return (
     <Box
+      onMouseDown={onClickAction}
+      onContextMenu={contextAction}
       ref={setNodeRef}
       {...attributes}
       {...listeners}
@@ -42,7 +46,15 @@ export default function Majordetail({
       <Typography sx={{ width: "2%" }}>
         {convertToPersianNumbers(index)}
       </Typography>
-      <Typography sx={{ width: "4%", cursor: "grab",display:"flex",alignItems:"center",justifyContent:"center" }}>
+      <Typography
+        sx={{
+          width: "4%",
+          cursor: "grab",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <IconlyDrag size={20} />
       </Typography>
       <Typography sx={{ width: "20%", textAlign: "center" }}>

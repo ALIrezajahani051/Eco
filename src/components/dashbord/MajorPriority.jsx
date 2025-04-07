@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   Box,
@@ -16,10 +16,15 @@ import {
 } from "@mui/material";
 import Majordetail from "./Majordetail";
 import Majortitle from "./Majortitle";
+import AddtoMajorList from "./AddtoMajorList";
 import {
   IconlyDrag,
   IconlyPrinter,
   IconlyFilter2,
+  IconlyDelete,
+  IconlyAdduser,
+  IconlyPlus,
+  IconlyRightClick,
 } from "../../../public/Icons";
 import { closestCenter, closestCorners, DndContext } from "@dnd-kit/core";
 import {
@@ -213,20 +218,32 @@ const majorsOptions = [
 
 export default function MajorPriority({ type }) {
   const [majors, setMajores] = useState(majorsOptions);
+  const [addIndex, setAddIndex] = useState(null);
+  const [contextposition, setContextPosition] = useState({
+    x: 0,
+    y: 0,
+    id: 0,
+    show: false,
+  });
+  useEffect(() => {
+    const handleClick = () => {
+      setContextPosition({
+        x: 0,
+        y: 0,
+        id: 0,
+        show: false,
+      });
+    };
 
-  const title = [
-    {
-      uni_name: "دانشگاه",
-      major: "رشته",
-      sex: 1,
-      code: "50005",
-      dorm: "وضعیت خوابگاه",
-      university_type: "public",
-      capacity: 50,
-      major_type: "",
-      description: "توضیحات",
-    },
-  ];
+    if (contextposition.show) {
+      document.addEventListener("click", handleClick);
+    } else {
+      document.removeEventListener("click", handleClick);
+    }
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [contextposition.show]);
 
   const onDragEnd = (e) => {
     const { active, over } = e;
@@ -247,7 +264,7 @@ export default function MajorPriority({ type }) {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <Box sx={{ width: "100%", position: "relative" }}>
+      <Box sx={{ width: "100%" }}>
         <Box
           sx={{
             display: "flex",
@@ -267,6 +284,11 @@ export default function MajorPriority({ type }) {
             اولیه اولویت ها وجود ندارد اضافه کنید ، این موارد به اول اضافه
             خواهند شد.
           </Typography>
+          <Typography sx={{ display: "flex", justifyContents: "center" }}>
+            - با <IconlyRightClick size={22} /> راست کلیک بر روی هر یک از موارد
+            میتوانید به عملیات هایی نظیر حذف ، اضافه کد رشته جدید به بعد و ...
+            دست پیدا کنید.{" "}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -274,8 +296,96 @@ export default function MajorPriority({ type }) {
             flexDirection: "row-reverse",
             m: "10px",
             gap: "10px",
+            position: "relative",
           }}
         >
+          <Box
+            sx={{
+              position: "absolute",
+              left: contextposition.x,
+              top: contextposition.y,
+              display: contextposition.show ? "flex" : "none",
+              width: "150px",
+              flexDirection: "column",
+              height: "auto",
+              borderRadius: "10px",
+              backgroundColor: "rgb(18, 52, 88,0.98)",
+              padding: "10px",
+              gap: 0.5,
+              color: "white",
+              zIndex: 10,
+            }}
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                width: "10px",
+                height: "10px",
+                backgroundColor: "rgb(18, 52, 88,0.98)",
+                top: "2.5px",
+                borderRadius: "2px",
+                transform: "translate(-25%,-50%) rotate(45deg)",
+                left: "5%",
+              }}
+            />{" "}
+            <Box
+              onClick={() => {
+                const code = contextposition.id;
+
+                const findex = majors.findIndex((major) => major.code === code);
+                setAddIndex(findex);
+              }}
+              sx={{ cursor: "pointer" }}
+            >
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  fontSize: "0.75rem",
+                }}
+              >
+                <IconlyPlus size={18} color="white" />
+                اضافه به بعد
+              </Typography>
+            </Box>
+            <Divider
+              sx={{
+                opacity: 0.6,
+                borderBottom: "1px solid white",
+                width: "90%",
+              }}
+            />
+            <Box
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                const code = contextposition.id;
+
+                const itemToDelete = majors.find(
+                  (major) => major.code === code
+                );
+
+                if (itemToDelete) {
+                  const updatedItems = majors.filter(
+                    (major) => major.code !== code
+                  );
+                  setMajores(updatedItems);
+                }
+              }}
+            >
+              <Typography
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  fontSize: "0.75rem",
+                }}
+              >
+                <IconlyDelete size={16} color="white" />
+                حذف
+              </Typography>
+            </Box>{" "}
+          </Box>
           <Button
             sx={{
               padding: "4px 12px",
@@ -319,12 +429,41 @@ export default function MajorPriority({ type }) {
               strategy={verticalListSortingStrategy}
             >
               {majors.map((major, index) => (
-                <Majordetail
-                  key={index}
-                  index={index + 1}
-                  major={major}
-                  id={major.code}
-                />
+                <>
+                  <Majordetail
+                    onClickAction={() => {
+                      console.log(major.code);
+                      setContextPosition({
+                        x: 0,
+                        y: 0,
+                        show: false,
+                        id: 0,
+                      });
+                    }}
+                    key={index}
+                    index={index + 1}
+                    major={major}
+                    id={major.code}
+                    contextAction={(e) => {
+                      console.log(major.code);
+                      e.preventDefault();
+                      setContextPosition({
+                        x: e.pageX - 80,
+                        y: e.pageY - 410,
+                        show: true,
+                        id: major.code,
+                      });
+                    }}
+                  />
+                  {index == addIndex && (
+                    <AddtoMajorList
+                      options={majorsOptions}
+                      closeAdd={() => {
+                        setAddIndex(null);
+                      }}
+                    />
+                  )}
+                </>
               ))}
             </SortableContext>
           </DndContext>

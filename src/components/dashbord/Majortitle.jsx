@@ -9,6 +9,7 @@ export default function Majortitle() {
     <Box
       sx={{
         position: "sticky",
+        zIndex:1,
         top: "2px",
         p: "20px 15px",
         mb: "10px",

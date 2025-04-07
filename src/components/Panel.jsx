@@ -15,7 +15,7 @@ function Panel() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Box sx={{ display: "flex", height: "auto", backgroundColor: "#F5F4FC" }}>
+    <Box sx={{position:"relative", display: "flex", height: "auto", backgroundColor: "#F5F4FC" }}>
       <Drawer
         open={open}
         setOpen={setOpen}
@@ -25,9 +25,10 @@ function Panel() {
 
       <Box
         sx={{
+          zIndex:1,
           flexGrow: 1,
           marginRight: "10px",
-          marginBottom: "20px",
+          marginBottom: "50px",
           paddingTop: "30px",
           display: "flex",
           paddingRight: "15px",
