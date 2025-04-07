@@ -10,7 +10,8 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Panel from "./components/Panel";
-import FilterChoose from "./components/dashbord/FilterChoose"
+import FilterChoose from "./components/dashbord/FilterChoose";
+import PrintMajors from "./components/dashbord/PrintMajors";
 
 function App() {
   return (
@@ -62,6 +63,15 @@ function App() {
             element={
               <>
                 <FilterChoose />
+              </>
+            }
+          />
+
+          <Route
+            path="/print"
+            element={
+              <>
+                <PrintMajors />
               </>
             }
           />

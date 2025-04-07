@@ -14,6 +14,7 @@ import {
   Paper,
   Divider,
 } from "@mui/material";
+import ReactDOMServer from "react-dom/server";
 import Majordetail from "./Majordetail";
 import Majortitle from "./Majortitle";
 import AddtoMajorList from "./AddtoMajorList";
@@ -32,6 +33,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { arrayMove } from "@dnd-kit/sortable";
+import PrintMajors from "./PrintMajors";
 const convertToPersianNumbers = (num) => {
   return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
 };
@@ -219,12 +221,29 @@ const majorsOptions = [
 export default function MajorPriority({ type }) {
   const [majors, setMajores] = useState(majorsOptions);
   const [addIndex, setAddIndex] = useState(null);
+  const [addmajor, setAddmajor] = useState(null);
+
   const [contextposition, setContextPosition] = useState({
     x: 0,
     y: 0,
     id: 0,
     show: false,
   });
+  useEffect(() => {
+    if (
+      addmajor != null &&
+      !majors.some((major) => major.code == addmajor.code)
+    ) {
+      const updatedItems = [...majors];
+      updatedItems.splice(addIndex + 1, 0, addmajor);
+      setMajores(updatedItems);
+
+      setAddmajor(null);
+      setAddIndex(null);
+    }
+    return;
+  }, [addmajor]);
+
   useEffect(() => {
     const handleClick = () => {
       setContextPosition({
@@ -279,15 +298,15 @@ export default function MajorPriority({ type }) {
             <IconlyDrag />و جابجا کردن آن به مکان مورد نظر ، میتوانید ترتیب
             اولیه را مطابق نظر خود تغییر دهید.
           </Typography>
-          <Typography>
-            - همچنین میتوانید به وسیله کد رشته ، رشته مد نظر خود را که در ترتیب
-            اولیه اولویت ها وجود ندارد اضافه کنید ، این موارد به اول اضافه
-            خواهند شد.
-          </Typography>
           <Typography sx={{ display: "flex", justifyContents: "center" }}>
             - با <IconlyRightClick size={22} /> راست کلیک بر روی هر یک از موارد
             میتوانید به عملیات هایی نظیر حذف ، اضافه کد رشته جدید به بعد و ...
             دست پیدا کنید.{" "}
+          </Typography>
+
+          <Typography sx={{ display: "flex", justifyContents: "center" }}>
+            - به وسیله " یافتن در دفترچه " میتوانید با استفاده از موتور های
+            جستجو به راحتی به کد رشته مدنظر خود جهت افزودن دست پیدا کنید.
           </Typography>
         </Box>
         <Box
@@ -322,7 +341,7 @@ export default function MajorPriority({ type }) {
                 width: "10px",
                 height: "10px",
                 backgroundColor: "rgb(18, 52, 88,0.98)",
-                top: "2.5px",
+                top: "3.5px",
                 borderRadius: "2px",
                 transform: "translate(-25%,-50%) rotate(45deg)",
                 left: "5%",
@@ -387,6 +406,11 @@ export default function MajorPriority({ type }) {
             </Box>{" "}
           </Box>
           <Button
+           onClick={() => {
+            sessionStorage.setItem('majorsData', JSON.stringify(majors));
+            window.open(`${window.location.origin}/print`, "_blank");
+          }}
+          
             sx={{
               padding: "4px 12px",
               backgroundColor: "#115c33",
@@ -457,6 +481,7 @@ export default function MajorPriority({ type }) {
                   />
                   {index == addIndex && (
                     <AddtoMajorList
+                      setAddmajor={setAddmajor}
                       options={majorsOptions}
                       closeAdd={() => {
                         setAddIndex(null);

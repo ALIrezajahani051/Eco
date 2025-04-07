@@ -9,6 +9,7 @@ const convertToPersianNumbers = (num) => {
 };
 
 export default function AddtoMajorList({
+  setAddmajor,
   options,
   backgroundColor = "white",
   closeAdd,
@@ -74,6 +75,9 @@ export default function AddtoMajorList({
           placeholder="مثال: 60008"
         />
         <Button
+          onClick={() => {
+            setAddmajor(major);
+          }}
           disabled={disableAddButton}
           sx={{
             display: "inline-flex",
