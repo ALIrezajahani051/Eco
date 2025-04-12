@@ -11,13 +11,12 @@ export default function Majortitle() {
         position: "sticky",
         zIndex:1,
         top: "2px",
-        p: "20px 15px",
+        p: "13px 15px",
         mb: "10px",
         background:
           "linear-gradient(150deg, rgba(89,165,167,0.15) 10%, rgba(0,129,255,0.15) 73%)",
-
         backdropFilter: "blur(5px)",
-        borderRadius: "10px",
+        borderRadius: "6px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",

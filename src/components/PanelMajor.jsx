@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import Dashboard from "./dashbord/Dashboard";
-import Drawer from "./dashbord/Drawer";
+import MajorDrawer from "./dashbord/MajorDrawer";
 import Topbar from "./dashbord/Topbar";
-import Users from "./dashbord/Users";
 
 import { Box } from "@mui/material";
-import Checkabs from "./dashbord/Checkabs";
-import Disciplinary from "./dashbord/Disciplinary";
-import QuestionBank from "./dashbord/QuestionBank";
+import ChooseMajor from "./dashbord/ChooseMajor";
 
-function Panel() {
+function PanelMajor() {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -18,11 +14,11 @@ function Panel() {
       sx={{
         position: "relative",
         display: "flex",
-        minHeight: "auto",
+        height: "auto",
         backgroundColor: "#F5F4FC",
       }}
     >
-      <Drawer
+      <MajorDrawer
         open={open}
         setOpen={setOpen}
         active={active}
@@ -41,17 +37,15 @@ function Panel() {
           paddingLeft: "15px",
           flexDirection: "column",
           alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <Topbar open={open} />
-        {active == 0 && <Dashboard />}
-        {active == 1 && <Users open={open} />}
-        {active == 3 && <Checkabs open={open} />}
-        {active == 2 && <Disciplinary open={open} />}
-        {active == 10 && <QuestionBank open={open} />}
+
+        {active == 0 && <ChooseMajor open={open} />}
       </Box>
     </Box>
   );
 }
 
-export default Panel;
+export default PanelMajor;

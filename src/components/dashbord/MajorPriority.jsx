@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback, useState, useRef } from "react";
+import { useDropzone } from "react-dropzone";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import {
   Box,
@@ -26,6 +28,7 @@ import {
   IconlyAdduser,
   IconlyPlus,
   IconlyRightClick,
+  IconlyUpload,
 } from "../../../public/Icons";
 import { closestCenter, closestCorners, DndContext } from "@dnd-kit/core";
 import {
@@ -34,6 +37,7 @@ import {
 } from "@dnd-kit/sortable";
 import { arrayMove } from "@dnd-kit/sortable";
 import PrintMajors from "./PrintMajors";
+// import logo from "../../../public/logo.svg";
 const convertToPersianNumbers = (num) => {
   return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
 };
@@ -221,8 +225,27 @@ const majorsOptions = [
 export default function MajorPriority({ type }) {
   const [majors, setMajores] = useState(majorsOptions);
   const [addIndex, setAddIndex] = useState(null);
+  const [file, setFile] = useState(null);
   const [addmajor, setAddmajor] = useState(null);
+  const handleLogoClick = () => {
+    inputRef.current?.click();
+  };
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setFile(previewURL);
+    }
+  }, []);
 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [],
+    },
+    multiple: false,
+  });
+  const inputRef = useRef();
   const [contextposition, setContextPosition] = useState({
     x: 0,
     y: 0,
@@ -283,13 +306,13 @@ export default function MajorPriority({ type }) {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%", paddingBottom: "10px" }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             gap: 1,
-            marginBottom: "10%",
+            marginBottom: "6%",
           }}
         >
           <Typography variant="h6">راهنمای استفاده:</Typography>
@@ -304,11 +327,84 @@ export default function MajorPriority({ type }) {
             دست پیدا کنید.{" "}
           </Typography>
 
-          <Typography sx={{ display: "flex", justifyContents: "center" }}>
+          <Typography mb={10} sx={{ display: "flex", justifyContents: "center" }}>
             - به وسیله " یافتن در دفترچه " میتوانید با استفاده از موتور های
             جستجو به راحتی به کد رشته مدنظر خود جهت افزودن دست پیدا کنید.
           </Typography>
         </Box>
+
+        {/* <Typography sx={{ display: "flex", justifyContents: "center" }}>
+          نام دانش‌آموز : محمد میرابی
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row-reverse",
+            // justifyContent: "center",
+            alignItems: "center",
+            // minHeight: "250px",
+            padding: "0.1rem",
+            // maxWidth:"150px"
+          }}
+        >
+          {1 == 2 ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 1,
+                cursor: "pointer",
+              }}
+              onClick={handleLogoClick}
+            >
+              <img src={file} width={100} height={100} alt="لوگو" />
+              <Typography>لوگوی مجموعه</Typography>
+              <input
+                type="file"
+                // ref={inputRef}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    onDrop([file]);
+                  }
+                }}
+                accept="image/*"
+                style={{ display: "none" }}
+              />
+            </Box>
+          ) : (
+            <Box
+              {...getRootProps()}
+              sx={{
+                border: "2px dashed #ccc",
+                borderRadius: "15px",
+                padding: 1,
+                textAlign: "center",
+                cursor: "pointer",
+              }}
+            >
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <Typography>فایل را رها کنید...</Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "0.8rem",
+                  }}
+                >
+                  <IconlyUpload />
+                  لوگو مجموعه را اینجا بکشید یا آپلود کنید.
+                </Typography>
+              )}
+            </Box>
+          )} */}
+        {/* </div> */}
+
         <Box
           sx={{
             display: "flex",
@@ -406,11 +502,10 @@ export default function MajorPriority({ type }) {
             </Box>{" "}
           </Box>
           <Button
-           onClick={() => {
-            sessionStorage.setItem('majorsData', JSON.stringify(majors));
-            window.open(`${window.location.origin}/print`, "_blank");
-          }}
-          
+            onClick={() => {
+              sessionStorage.setItem("majorsData", JSON.stringify(majors));
+              window.open(`${window.location.origin}/print`, "_blank");
+            }}
             sx={{
               padding: "4px 12px",
               backgroundColor: "#115c33",
@@ -444,10 +539,14 @@ export default function MajorPriority({ type }) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 1,
+            gap: 0.8,
           }}
         >
-          <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+          <DndContext
+            collisionDetection={closestCenter}
+            onDragEnd={onDragEnd}
+            sensors={addIndex != null ? [] : undefined}
+          >
             <SortableContext
               items={majors.map((major) => major.code)}
               strategy={verticalListSortingStrategy}
@@ -472,8 +571,8 @@ export default function MajorPriority({ type }) {
                       console.log(major.code);
                       e.preventDefault();
                       setContextPosition({
-                        x: e.pageX - 80,
-                        y: e.pageY - 410,
+                        x: e.pageX - 90,
+                        y: e.pageY - 470,
                         show: true,
                         id: major.code,
                       });

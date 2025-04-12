@@ -7,6 +7,8 @@ const toPersianNumber = (input) =>
 const getAdmissionType = (type) => {
   if (type === "daytime") return "روزانه";
   if (type === "evening") return "نوبت دوم";
+  if (type === "nighttime") return "نوبت دوم";
+
 };
 
 const getCurrentDateInPersian = () => {
@@ -109,7 +111,7 @@ const PrintMajors = () => {
 
   const thStyle = {
     ...thtdStyle,
-    backgroundColor: "#f2f2f2",
+    backgroundColor:"#F5F5F5",
     fontWeight: "bold",
   };
 
@@ -187,12 +189,12 @@ const PrintMajors = () => {
             <tr key={idx}>
               <td style={thtdStyle}>{toPersianNumber(idx + 1)}</td>
               <td style={thtdStyle}>{item.uni_name}</td>
-              <td style={thtdStyle}>{item.province || "—"}</td>
-              <td style={thtdStyle}>{item.city || "—"}</td>
+              <td style={thtdStyle}>{item.province || "-"}</td>
+              <td style={thtdStyle}>{item.city || "-"}</td>
               <td style={thtdStyle}>{item.major}</td>
               <td style={thtdStyle}>{toPersianNumber(item.code)}</td>
               <td style={thtdStyle}>{getAdmissionType(item.major_type)}</td>
-              <td style={thtdStyle}>{item.description}</td>
+              <td style={thtdStyle}>{item.description || "-"}</td>
             </tr>
           ))}
         </tbody>

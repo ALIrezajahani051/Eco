@@ -27,12 +27,12 @@ export default function AddtoMajorList({
   return (
     <Box
       sx={{
-        paddingBottom: "25px",
+        paddingBottom: "5px",
         backgroundColor: backgroundColor,
         borderRadius: "10px",
         display: "flex",
         flexDirection: "column",
-        gap: 4,
+        gap: 1,
         width: "100%",
         touchAction: "none",
       }}
@@ -108,7 +108,7 @@ export default function AddtoMajorList({
             justifyContent: "space-evenly",
             width: "100%",
             opacity: 0.4,
-            p: "5px 15px",
+            p: "2px 25px",
           }}
         >
           <Typography sx={{ width: "2%", textAlign: "center" }}></Typography>

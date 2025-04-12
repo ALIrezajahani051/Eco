@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -51,17 +51,13 @@ const customTheme = createTheme({
   },
 });
 
-export default function PersistentDrawerLeft({
-  active,
-  setActive,
-  open,
-  setOpen,
-}) {
+export default function MajorDrawer({ active, setActive, open, setOpen }) {
   // const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
+
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -140,66 +136,10 @@ export default function PersistentDrawerLeft({
         <List>
           {[
             {
-              label: "میزکار",
-              icon: <IconlyHome />,
-              iconbold: <IconlyHomebold />,
-            },
-            {
-              label: "کاربران",
-              icon: <Iconlyuser />,
-              iconbold: <Iconlyuserbold />,
-            },
-            {
-              label: "موارد‌انظباطی",
-              icon: <IconlyInfoSquare />,
-              iconbold: <IconlyInfoSquarebold />,
-            },
-            {
-              label: "حضور و غیاب",
-              icon: <IconlyProfileTick />,
-              iconbold: <IconlyProfileTick fill="black" />,
-            },
-            {
-              label: "گزارشات",
-              icon: <IconlyReport />,
-              iconbold: <IconlyReportBold />,
-            },
-            {
-              label: "محتوای آموزشی",
-              icon: <IconlyEdu />,
-              iconbold: <IconlyEduBold />,
-            },
-            {
-              label: "بازی و سرگرمی",
-              icon: <IconlyGame />,
-              iconbold: <IconlyGameBold />,
-            },
-            {
-              label: "تکالیف درسی",
-              icon: <IconlyEdit />,
-              iconbold: <IconlyEditbold />,
-            },
-            {
-              label: "تقویم آموزشی",
-              icon: <IconlyCalendar />,
-              iconbold: <IconlyCalendarbold />,
-            },
-            {
-              label: "برنامه مطالعه",
-              icon: <IconlyBook />,
-              iconbold: <IconlyBookBold />,
-            },
-            {
-              label: "بانک سوالات",
+              label: "انتخاب رشته",
               icon: <IconlyBook2 />,
               iconbold: <IconlyBook2Bold />,
             },
-            {
-              label: "شهریه",
-              icon: <IconlyWallet />,
-              iconbold: <IconlyWalletbold />,
-            },
-            
           ].map((item, index) => (
             <ListItem
               button

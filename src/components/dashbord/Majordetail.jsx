@@ -33,13 +33,14 @@ export default function Majordetail({
       {...listeners}
       sx={{
         ...style,
-        p: "25px 15px",
+        p: "10px 25px",
         backgroundColor: backgroundColor,
         borderRadius: "10px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
         width: "100%",
+        height: "45px",
         touchAction: "none",
       }}
     >
@@ -78,8 +79,9 @@ export default function Majordetail({
         sx={{
           overflow: "auto",
           width: "20%",
-          fontSize: "0.75rem",
+          fontSize: "0.7rem",
           textAlign: "center",
+          wordWrap: "break-word",
         }}
       >
         {major.description ? major.description : "-"}

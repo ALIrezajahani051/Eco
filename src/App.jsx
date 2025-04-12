@@ -12,7 +12,7 @@ import Signup from "./components/pages/Signup";
 import Panel from "./components/Panel";
 import FilterChoose from "./components/dashbord/FilterChoose";
 import PrintMajors from "./components/dashbord/PrintMajors";
-
+import PanelMajor from "./components/PanelMajor";
 function App() {
   return (
     <>
@@ -67,6 +67,14 @@ function App() {
             }
           />
 
+          <Route
+            path="/panel/major"
+            element={
+              <>
+                <PanelMajor />
+              </>
+            }
+          />
           <Route
             path="/print"
             element={
