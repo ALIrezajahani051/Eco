@@ -15,6 +15,7 @@ import {
   Grid,
   Paper,
   Divider,
+  Collapse,
 } from "@mui/material";
 import ReactDOMServer from "react-dom/server";
 import Majordetail from "./Majordetail";
@@ -251,7 +252,7 @@ const majorsOptions = [
     province: "کردستان",
   },
 ];
- 
+
 export default function MajorPriority({ type }) {
   const [majors, setMajores] = useState(majorsOptions);
   const [addIndex, setAddIndex] = useState(null);
@@ -572,7 +573,7 @@ export default function MajorPriority({ type }) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 0.8,
+            gap: 0.4,
           }}
         >
           <DndContext
@@ -611,7 +612,8 @@ export default function MajorPriority({ type }) {
                       });
                     }}
                   />
-                  {index == addIndex && (
+
+                  <Collapse in={index == addIndex}>
                     <AddtoMajorList
                       setAddmajor={setAddmajor}
                       options={majorsOptions}
@@ -619,7 +621,7 @@ export default function MajorPriority({ type }) {
                         setAddIndex(null);
                       }}
                     />
-                  )}
+                  </Collapse>
                 </>
               ))}
             </SortableContext>

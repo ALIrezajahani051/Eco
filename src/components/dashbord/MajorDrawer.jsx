@@ -65,10 +65,10 @@ export default function MajorDrawer({ active, setActive, open, setOpen }) {
         anchor="right"
         variant="permanent"
         sx={{
-          width: open ? 250 : 60,
+          width: open ? 200 : 60,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: open ? 250 : 60,
+            width: open ? 200 : 60,
             boxSizing: "border-box",
             transition: customTheme.transitions.create("width", {
               easing: customTheme.transitions.easing.sharp,
