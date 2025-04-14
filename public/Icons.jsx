@@ -1034,7 +1034,11 @@ export const IconlyActivity = ({ size = 24, color = "#000000" }) => {
   );
 };
 
-export const IconlyDelete = ({ size = 24, color = "#000000" }) => {
+export const IconlyDelete = ({
+  size = 24,
+  color = "#000000",
+  fill = "none",
+}) => {
   return (
     <svg
       width={size}
@@ -1048,7 +1052,7 @@ export const IconlyDelete = ({ size = 24, color = "#000000" }) => {
         id="Iconly/Light/Delete"
         stroke="none"
         strokeWidth="1.5"
-        fill="none"
+        fill={fill}
         fillRule="evenodd"
         strokeLinecap="round"
         strokeLinejoin="round"

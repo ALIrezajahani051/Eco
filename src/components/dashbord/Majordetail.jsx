@@ -64,12 +64,18 @@ export default function Majordetail({
       <Typography sx={{ width: "20%", textAlign: "center" }}>
         {major.major}
       </Typography>
+      <Typography sx={{ width: "10%", textAlign: "center" }}>
+        {major.city}
+      </Typography>
+      <Typography sx={{ width: "10%", textAlign: "center" }}>
+        {major.province}
+      </Typography>
       <Typography
         sx={{ width: "15%", fontSize: "0.8rem", textAlign: "center" }}
       >
         {major.major_type === "daytime" ? "روزانه" : "نیمسال‌دوم"}
       </Typography>
-      <Typography sx={{ width: "10%", textAlign: "center" }}>
+      <Typography sx={{ width: "5%", textAlign: "center" }}>
         {convertToPersianNumbers(major.code)}
       </Typography>
       <Typography sx={{ width: "10%", textAlign: "center" }}>

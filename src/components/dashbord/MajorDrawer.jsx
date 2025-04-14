@@ -196,7 +196,7 @@ export default function MajorDrawer({ active, setActive, open, setOpen }) {
         <Button
           className="Btn"
           sx={{
-            marginTop: "30px",
+            marginTop: "50px",
             minWidth: open ? "75%" : "15px",
             padding: open ? "8px" : "6px 8px",
             whiteSpace: "nowrap",

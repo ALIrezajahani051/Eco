@@ -141,14 +141,12 @@ export default function FillPriority({ setShowDetailsList }) {
       <Box sx={{ p: 3, backgroundColor: "white", borderRadius: 2 }}>
         {!details && (
           <>
-            <Typography variant="h6" sx={{ mb: 3, textAlign: "center" }}>
-              انتخاب اولویت‌ها
-            </Typography>
-
             <Typography variant="h6" sx={{ textAlign: "right" }}>
               راهنمای استفاده :
             </Typography>
-            <Typography sx={{ mb: 5, textAlign: "right", fontSize: "0.82rem" }}>
+            <Typography
+              sx={{ mb: 10, textAlign: "right", fontSize: "0.82rem" }}
+            >
               - ابتدا با استفاده از دکمه "افزودن دسته جدید" می‌توانید چندین
               دسته‌بندی برای انتخاب شهر و رشته ایجاد کنید.
               <br />
@@ -170,7 +168,7 @@ export default function FillPriority({ setShowDetailsList }) {
                       action={
                         <Tooltip title="حذف دسته">
                           <IconButton onClick={() => removeCategory(cat.id)}>
-                            <IconlyDelete color="red" />
+                            <IconlyDelete color="red" fill="red" />
                           </IconButton>
                         </Tooltip>
                       }
@@ -436,7 +434,7 @@ export default function FillPriority({ setShowDetailsList }) {
                   px: 2,
                   py: 1,
                   borderRadius: "8px",
-                  background: "#0081ff",
+                  background: "#006A71",
                   color: "white",
                   boxShadow: "none",
                   fontWeight: 600,
@@ -458,10 +456,12 @@ export default function FillPriority({ setShowDetailsList }) {
               disableElevation
               variant="contained"
               sx={{
-                px: 4,
-                py: 1,
+                width: "100%",
+                mt: 8,
+                px: 5,
+                py: 1.5,
                 borderRadius: 3,
-                background: "#59a5a7",
+                background: "#0081ff",
                 color: "white",
                 fontWeight: 600,
               }}

@@ -65,6 +65,8 @@ const majorsOptions = [
     capacity: 100,
     major_type: "daytime",
     description: "برنامه درسی به‌روز با اساتید برجسته",
+    city: "تهران",
+    province: "تهران",
   },
   {
     uni_name: "دانشگاه صنعتی شریف",
@@ -76,6 +78,8 @@ const majorsOptions = [
     capacity: 80,
     major_type: "daytime",
     description: "اساتید مجرب و آزمایشگاه‌های پیشرفته",
+    city: "تهران",
+    province: "تهران",
   },
   {
     uni_name: "دانشگاه امیرکبیر",
@@ -87,6 +91,8 @@ const majorsOptions = [
     capacity: 70,
     major_type: "nighttime",
     description: null,
+    city: "تهران",
+    province: "تهران",
   },
   {
     uni_name: "دانشگاه علم و صنعت",
@@ -98,6 +104,8 @@ const majorsOptions = [
     capacity: 60,
     major_type: "daytime",
     description: "محیط آموزشی مناسب برای یادگیری مدیریت صنعتی",
+    city: "تهران",
+    province: "تهران",
   },
   {
     uni_name: "دانشگاه شهید بهشتی",
@@ -109,6 +117,8 @@ const majorsOptions = [
     capacity: 90,
     major_type: "daytime",
     description: "یکی از برترین دانشکده‌های حقوق کشور",
+    city: "تهران",
+    province: "تهران",
   },
   {
     uni_name: "دانشگاه فردوسی مشهد",
@@ -120,6 +130,8 @@ const majorsOptions = [
     capacity: 50,
     major_type: "daytime",
     description: "محیط دانشگاهی پویا با امکانات آموزشی عالی",
+    city: "مشهد",
+    province: "خراسان رضوی",
   },
   {
     uni_name: "دانشگاه تبریز",
@@ -131,6 +143,8 @@ const majorsOptions = [
     capacity: 85,
     major_type: "daytime",
     description: null,
+    city: "تبریز",
+    province: "آذربایجان شرقی",
   },
   {
     uni_name: "دانشگاه اصفهان",
@@ -142,6 +156,8 @@ const majorsOptions = [
     capacity: 40,
     major_type: "daytime",
     description: "تمرکز بر کاربردهای ریاضیات در مهندسی و علوم",
+    city: "اصفهان",
+    province: "اصفهان",
   },
   {
     uni_name: "دانشگاه شیراز",
@@ -153,6 +169,8 @@ const majorsOptions = [
     capacity: 75,
     major_type: "daytime",
     description: "دروس تخصصی همراه با کارهای آزمایشگاهی قوی",
+    city: "شیراز",
+    province: "فارس",
   },
   {
     uni_name: "دانشگاه زنجان",
@@ -164,6 +182,8 @@ const majorsOptions = [
     capacity: 60,
     major_type: "daytime",
     description: "آموزش‌های کاربردی در زمینه کشاورزی و محیط‌زیست",
+    city: "زنجان",
+    province: "زنجان",
   },
   {
     uni_name: "دانشگاه مازندران",
@@ -175,6 +195,8 @@ const majorsOptions = [
     capacity: 55,
     major_type: "nighttime",
     description: "تمرکز بر مهارت‌های کسب‌وکار و تجارت",
+    city: "بابلسر",
+    province: "مازندران",
   },
   {
     uni_name: "دانشگاه گیلان",
@@ -186,6 +208,8 @@ const majorsOptions = [
     capacity: 45,
     major_type: "daytime",
     description: "تحقیقات پیشرفته در علوم زیستی",
+    city: "رشت",
+    province: "گیلان",
   },
   {
     uni_name: "دانشگاه ارومیه",
@@ -197,6 +221,8 @@ const majorsOptions = [
     capacity: 65,
     major_type: "daytime",
     description: "دوره‌های تخصصی در زمینه درمان حیوانات",
+    city: "ارومیه",
+    province: "آذربایجان غربی",
   },
   {
     uni_name: "دانشگاه یزد",
@@ -208,6 +234,8 @@ const majorsOptions = [
     capacity: 30,
     major_type: "daytime",
     description: "آموزش عمیق در نظریه‌های فیزیک مدرن",
+    city: "یزد",
+    province: "یزد",
   },
   {
     uni_name: "دانشگاه کردستان",
@@ -219,9 +247,11 @@ const majorsOptions = [
     capacity: 50,
     major_type: "daytime",
     description: "مطالعه و تحلیل آثار برجسته ادبیات فارسی",
+    city: "سنندج",
+    province: "کردستان",
   },
 ];
-
+ 
 export default function MajorPriority({ type }) {
   const [majors, setMajores] = useState(majorsOptions);
   const [addIndex, setAddIndex] = useState(null);
@@ -327,7 +357,10 @@ export default function MajorPriority({ type }) {
             دست پیدا کنید.{" "}
           </Typography>
 
-          <Typography mb={10} sx={{ display: "flex", justifyContents: "center" }}>
+          <Typography
+            mb={10}
+            sx={{ display: "flex", justifyContents: "center" }}
+          >
             - به وسیله " یافتن در دفترچه " میتوانید با استفاده از موتور های
             جستجو به راحتی به کد رشته مدنظر خود جهت افزودن دست پیدا کنید.
           </Typography>

@@ -72,10 +72,6 @@ const items = [
     ],
   },
   {
-    label: "تیپ",
-    options: ["تیپ ۱", "تیپ ۲", "تیپ ۳"],
-  },
-  {
     label: "جنسیت",
     options: ["مرد", "زن"],
   },
@@ -98,6 +94,8 @@ const PriorityField = React.memo(({ label, options }) => (
     <Typography sx={{ marginBottom: "5px" }}>{label} :</Typography>
     <Autocomplete
       multiple
+      disableClearable
+      size="small"
       noOptionsText="مورد یافت نشد"
       popupIcon={<IconlyDown size={21} />}
       options={options}
@@ -116,7 +114,6 @@ const PriorityField = React.memo(({ label, options }) => (
             backgroundColor: "#f0f0f0",
             borderRadius: "10px",
             "& .MuiOutlinedInput-root": {
-              padding: "5px",
               "& fieldset": {
                 border: "none",
               },
@@ -162,33 +159,34 @@ export default function FilterChoose({}) {
           }}
         >
           <Box sx={{ flex: 1 }}>
-            <Typography variant="h6">جستجوی رشته</Typography>
+            {/* <Typography variant="h6">جستجوی رشته</Typography> */}
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 gap: 1.5,
-                marginBottom: "2%",
-                marginTop: "2%",
+                marginBottom: "5%",
+                // marginTop: "2%",
               }}
             >
               <Typography variant="h6">راهنمای استفاده:</Typography>
-              <Typography sx={{ display: "flex", gap: 0.5 }}>
+              <Typography sx={{ display: "flex", gap: 0.5, fontSize: "0.8em" }}>
                 - با انتخاب هر یک از موارد جستجو بر اساس در نظر گرفتن شرایط مد
                 نظر انجام خواهد شد.
-              </Typography>
-              <Typography>
+                <br />
                 - در صورت انتخاب نکردن هر مورد در نظر گرفتن شرایط برای آن نادیده
                 خواهد گرفته شد .
-              </Typography>
-              <Typography>
+                <br />
                 - در هر بخش میتوانید بیش از یک مورد انتخاب کنید.
-              </Typography>
-              <Typography>
-                - با کلیک بر روی کد رشته ، کد کپی خواهد شد.
+                <br />- با کلیک بر روی کد رشته ، کد کپی خواهد شد.
               </Typography>
             </Box>
-            <Grid container spacing={3} sx={{ marginTop: "5px" }}>
+            <Grid
+              container
+              rowSpacing={2}
+              columnSpacing={4}
+              sx={{ marginTop: "5px", mb: 5, px: 20 }}
+            >
               {items.map((item, index) => (
                 <Grid item xs={6} sm={6} md={6} key={index}>
                   <PriorityField options={item.options} label={item.label} />
@@ -199,7 +197,7 @@ export default function FilterChoose({}) {
           <Button
             sx={{
               marginTop: "30px",
-              width: "15%",
+              width: "100%",
               padding: "10px 25px 10px 25px",
               color: "white",
               backgroundColor: "#FF9B17",
@@ -238,7 +236,6 @@ export default function FilterChoose({}) {
                     <TableCell sx={{ textAlign: "center" }}>دانشگاه</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>شهر</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>رشته</TableCell>
-                    <TableCell sx={{ textAlign: "center" }}>تیپ</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>جنسیت</TableCell>
                     <TableCell sx={{ textAlign: "center" }}>نوع</TableCell>
                     <TableCell
@@ -265,7 +262,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -277,7 +273,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -289,7 +284,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -301,7 +295,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -313,7 +306,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -325,7 +317,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -337,7 +328,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "دارد",
                       gender: "مرد",
-                      tier: "تیپ ۱",
                       admission: "روزانه",
                       code: "12345",
                     },
@@ -349,7 +339,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی ارشد",
                       dorm: "ندارد",
                       gender: "زن",
-                      tier: "تیپ ۲",
                       admission: "نیمسال دوم",
                       code: "67890",
                     },
@@ -361,7 +350,6 @@ export default function FilterChoose({}) {
                       level: "دکتری",
                       dorm: "دارد",
                       gender: "هر دو",
-                      tier: "تیپ ۳",
                       admission: "روزانه",
                       code: "11223",
                     },
@@ -373,7 +361,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی",
                       dorm: "ندارد",
                       gender: "زن",
-                      tier: "تیپ ۱",
                       admission: "نیمسال دوم",
                       code: "33445",
                     },
@@ -385,7 +372,6 @@ export default function FilterChoose({}) {
                       level: "کارشناسی ارشد",
                       dorm: "ندارد",
                       gender: "هر دو",
-                      tier: "تیپ ۲",
                       admission: "روزانه",
                       code: "55667",
                     },
@@ -414,11 +400,6 @@ export default function FilterChoose({}) {
                         sx={{ textAlign: "center", fontSize: "0.7rem" }}
                       >
                         {uni.major}
-                      </TableCell>
-                      <TableCell
-                        sx={{ textAlign: "center", fontSize: "0.7rem" }}
-                      >
-                        {uni.tier}
                       </TableCell>
                       <TableCell
                         sx={{ textAlign: "center", fontSize: "0.7rem" }}

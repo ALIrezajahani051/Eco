@@ -153,11 +153,10 @@ export default function ChooseMajor() {
               راهنمای استفاده
             </Typography>
 
-            <Typography mb={0.5} sx={{ fontSize: "0.85rem" }}>
+            <Typography mb={5} sx={{ fontSize: "0.85rem", lineHeight: 1.8 }}>
               - این سامانه صرفاً جهت تسهیل انتخاب اولویت‌ها است.
-            </Typography>
-            <Typography mb={3} sx={{ fontSize: "0.85rem" }}>
-              - پس از ثبت اطلاعات اولیه، امکان انتخاب اولویت‌ها فعال خواهد شد.
+              <br />- پس از ثبت اطلاعات اولیه، امکان انتخاب اولویت‌ها فعال خواهد
+              شد.
             </Typography>
 
             {!showForm && (
@@ -183,7 +182,7 @@ export default function ChooseMajor() {
             )}
 
             <Collapse in={showForm}>
-              <Typography mb={2} mt={1} fontWeight={600}>
+              <Typography mb={5} mt={1} fontWeight={600}>
                 اطلاعات اولیه دانش‌آموز:
               </Typography>
               <Box
@@ -198,7 +197,7 @@ export default function ChooseMajor() {
                 <Box
                   sx={{
                     width: "100%",
-                    maxWidth: "800px",
+                    maxWidth: "600px",
                     backgroundColor: "#fff",
                     borderRadius: 3,
                   }}
@@ -269,6 +268,7 @@ export default function ChooseMajor() {
                         }
                         renderInput={(params) => (
                           <TextField
+                            size="small"
                             {...params}
                             sx={inputStyle}
                             placeholder="رشته"
@@ -341,7 +341,7 @@ export default function ChooseMajor() {
                     </Grid>
                   </Grid>
 
-                  <Box textAlign="center" mt={4}>
+                  <Box textAlign="center" mt={6} mb={2}>
                     <Button
                       disableElevation
                       onClick={handleSubmit}
