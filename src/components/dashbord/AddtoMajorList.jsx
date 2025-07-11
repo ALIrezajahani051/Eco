@@ -1,28 +1,133 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, TextField, Button, Tooltip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Tooltip,
+  CircularProgress,
+} from "@mui/material";
 import { IconlyCloseSquare, IconlyPlus } from "../../../public/Icons";
+import { toast, Bounce } from "react-toastify";
 
 const convertToPersianNumbers = (num) => {
   if (num != null)
     return num.toString().replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[digit]);
-  return;
+  return "";
 };
 
 export default function AddtoMajorList({
-  setAddmajor,
-  options,
+  setAddMajor,
+  closeable = true,
+  currentProgramData = [],
   backgroundColor = "white",
   closeAdd,
 }) {
-  const [code, setCode] = useState(null);
-  const [major, setMajor] = useState(null);
+  const [code, setCode] = useState("");
+  const [fetchedMajor, setFetchedMajor] = useState(null);
   const [disableAddButton, setDisableAddButton] = useState(true);
+  const [isMajorAlreadyAdded, setIsMajorAlreadyAdded] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    const index = options.findIndex((item) => item.code === code);
-    setMajor(options[index]);
-    if (index != -1) setDisableAddButton(false);
-    else setDisableAddButton(true);
-  }, [code]);
+    const searchByCode = async () => {
+      const trimmedCode = code.trim();
+
+      if (!trimmedCode || trimmedCode.length != 5) {
+        setDisableAddButton(true);
+        setFetchedMajor(null);
+        setIsMajorAlreadyAdded(false);
+        return;
+      }
+
+      const existsInCurrentProgram = currentProgramData?.some(
+        (m) => String(m.code) === trimmedCode
+      );
+
+      if (existsInCurrentProgram) {
+        setDisableAddButton(true);
+        setFetchedMajor(null);
+        setIsMajorAlreadyAdded(true);
+        toast.info("این رشته قبلاً به برنامه اضافه شده است!", {
+          position: "top-right",
+          autoClose: 2500,
+          theme: "light",
+          transition: Bounce,
+        });
+        return;
+      } else {
+        setIsMajorAlreadyAdded(false);
+      }
+
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `https://emeettest.pythonanywhere.com/findbycode/${encodeURIComponent(
+            trimmedCode
+          )}/`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Token ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!res.ok) {
+          setDisableAddButton(true);
+          setFetchedMajor(null);
+          if (!existsInCurrentProgram) {
+            toast.error("کد رشته یافت نشد یا مشکلی پیش آمد!", {
+              position: "top-right",
+              autoClose: 2500,
+              theme: "light",
+              transition: Bounce,
+            });
+          }
+          return;
+        }
+
+        const data = await res.json();
+        setFetchedMajor(data);
+        setDisableAddButton(false);
+      } catch (err) {
+        console.error("❌ خطای fetch:", err.message || err);
+        setDisableAddButton(true);
+        setFetchedMajor(null);
+        toast.error("خطا در ارتباط با سرور!", {
+          position: "top-right",
+          autoClose: 2500,
+          theme: "light",
+          transition: Bounce,
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(() => {
+      searchByCode();
+    }, 500);
+
+    return () => clearTimeout(debounceTimer);
+  }, [code, currentProgramData]);
+
+  const handleAddMajorClick = () => {
+    if (fetchedMajor) {
+      setAddMajor(fetchedMajor);
+      setCode("");
+      setFetchedMajor(null);
+      setDisableAddButton(true);
+
+      toast.success("رشته با موفقیت اضافه شد!", {
+        position: "top-right",
+        autoClose: 2500,
+        theme: "light",
+        transition: Bounce,
+      });
+    }
+  };
 
   return (
     <Box
@@ -37,23 +142,27 @@ export default function AddtoMajorList({
         touchAction: "none",
       }}
     >
-      <Tooltip title="بستن">
-        <Typography
-          onClick={closeAdd}
-          sx={{
-            display: "inline-flex",
-            width: "2%",
-            alignItems: "center",
-            gap: "3px",
-            cursor: "pointer",
-          }}
-        >
-          <IconlyCloseSquare color="red" />
-        </Typography>
-      </Tooltip>
+      {closeable && (
+        <Tooltip title="بستن">
+          <Typography
+            onClick={closeAdd}
+            sx={{
+              display: "inline-flex",
+              width: "fit-content",
+              alignSelf: "flex-end",
+              alignItems: "center",
+              gap: "3px",
+              cursor: "pointer",
+              padding: "5px",
+            }}
+          >
+            <IconlyCloseSquare color="red" />
+          </Typography>
+        </Tooltip>
+      )}
 
-      <Box mr={3}>
-        <Typography>کد رشته :</Typography>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2, mr: 3 }}>
+        <Typography sx={{ flexShrink: 0 }}>کد رشته :</Typography>
         <TextField
           value={code}
           onChange={(e) => {
@@ -65,6 +174,7 @@ export default function AddtoMajorList({
             borderRadius: "10px",
             "& .MuiInputBase-root input": {
               padding: "10px",
+              direction: "ltr",
             },
             "& .MuiOutlinedInput-root": {
               "& fieldset": {
@@ -72,12 +182,10 @@ export default function AddtoMajorList({
               },
             },
           }}
-          placeholder="مثال: 60008"
+          placeholder="e.g : 60008"
         />
         <Button
-          onClick={() => {
-            setAddmajor(major);
-          }}
+          onClick={handleAddMajorClick}
           disabled={disableAddButton}
           sx={{
             display: "inline-flex",
@@ -88,8 +196,8 @@ export default function AddtoMajorList({
             alignItems: "center",
             borderRadius: "10px",
             marginRight: "10px",
-            padding: "8px",
-            fontSize: "0.75rem",
+            padding: "8px 15px",
+            fontSize: "0.85rem",
           }}
         >
           <IconlyPlus
@@ -100,43 +208,49 @@ export default function AddtoMajorList({
         </Button>
       </Box>
 
-      {major != null && (
+      {isMajorAlreadyAdded && (
+        <Typography color="error" sx={{ mr: 3, mt: 1 }}>
+          این رشته قبلاً اضافه شده است!
+        </Typography>
+      )}
+
+      {loading && <>در حال جستجو...</>}
+      {fetchedMajor && !isMajorAlreadyAdded && (
         <Box
-          mt={1}
-          
+          mt={3}
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-evenly",
             width: "100%",
-            opacity: 0.4,
-            p: "2px 25px",
+            opacity: 0.9,
+            p: "0px -1px",
           }}
         >
           <Typography sx={{ width: "2%", textAlign: "center" }}></Typography>
           <Typography sx={{ width: "4%", textAlign: "center" }}></Typography>
           <Typography sx={{ width: "20%", textAlign: "center" }}>
-            {major.uni_name}
+            {fetchedMajor.uni_name}
           </Typography>
           <Typography sx={{ width: "20%", textAlign: "center" }}>
-            {major.major}
+            {fetchedMajor.major}
           </Typography>
           <Typography sx={{ width: "10%", textAlign: "center" }}>
-            {major.city}
+            {fetchedMajor.city?.name || "-"}
           </Typography>
           <Typography sx={{ width: "10%", textAlign: "center" }}>
-            {major.province}
+            {fetchedMajor.city?.state?.name || "-"}
           </Typography>
           <Typography
             sx={{ width: "15%", fontSize: "0.8rem", textAlign: "center" }}
           >
-            {major.major_type === "daytime" ? "روزانه" : "نیمسال‌دوم"}
+            {fetchedMajor.major_type === "daytime" ? "روزانه" : "نیمسال‌دوم"}
           </Typography>
           <Typography sx={{ width: "5%", textAlign: "center" }}>
-            {convertToPersianNumbers(major.code)}
+            {convertToPersianNumbers(fetchedMajor.code)}
           </Typography>
           <Typography sx={{ width: "10%", textAlign: "center" }}>
-            {major.dorm ? "دارد" : "ندارد"}
+            {fetchedMajor.dorm ? "دارد" : "ندارد"}
           </Typography>
           <Typography
             sx={{
@@ -146,7 +260,10 @@ export default function AddtoMajorList({
               textAlign: "center",
             }}
           >
-            {major.description ? major.description : "-"}
+            {fetchedMajor.description !== "nan" &&
+            fetchedMajor.description !== null
+              ? fetchedMajor.description
+              : "-"}
           </Typography>
         </Box>
       )}

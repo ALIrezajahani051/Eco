@@ -243,7 +243,7 @@ export const IconlyProfileTick = ({
 }) => {
   return (
     <svg
-      style={{ display: "block", flexShrink: 0 }} // جلوگیری از فضای خالی اضافی
+      style={{ display: "block", flexShrink: 0 }}
       width={size}
       height={size}
       viewBox="0 0 24 24"
@@ -1723,6 +1723,131 @@ export const IconlyRightClick = ({ size = 24, color = "#000000" }) => {
         d="M144,16H112A64.07,64.07,0,0,0,48,80v96a64.07,64.07,0,0,0,64,64h32a64.07,64.07,0,0,0,64-64V80A64.07,64.07,0,0,0,144,16ZM112,32h16v72H64V80A48.05,48.05,0,0,1,112,32Zm32,192H112a48.05,48.05,0,0,1-48-48V120H192v56A48.05,48.05,0,0,1,144,224Z"
         fill={color}
       />
+    </svg>
+  );
+};
+export const IconlyHide = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      width={size}
+      height="26"
+      viewBox="0 0 25 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M2.32255 8.83263C4.37757 13.1586 8.08902 15.8637 12.248 15.8654C12.2493 15.8654 12.2507 15.8654 12.252 15.8654V14.3654C12.2513 14.3654 12.2507 14.3654 12.25 14.3654C12.2493 14.3654 12.2487 14.3654 12.248 14.3654M12.25 14.3654C15.7047 14.3645 18.9566 12.117 20.8225 8.189L21.1444 7.51155L22.4993 8.15518L22.1774 8.83263C20.1224 13.1586 16.411 15.8637 12.252 15.8654M12.25 14.3654C8.79533 14.3645 5.5434 12.117 3.67744 8.189L3.35563 7.51155L2.00073 8.15518L2.32255 8.83263"
+        fill={color}
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M18.8397 11.3188L22.0115 14.4906L20.9508 15.5512L17.7791 12.3794L18.8397 11.3188Z"
+        fill={color}
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5.58123 11.3188L2.40946 14.4906L3.47012 15.5512L6.64189 12.3794L5.58123 11.3188Z"
+        fill={color}
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M15.0935 13.858L16.3561 18.2081L14.9156 18.6263L13.6529 14.2762L15.0935 13.858Z"
+        fill={color}
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.32668 13.8583L8.06404 18.2084L9.50459 18.6265L10.7672 14.2764L9.32668 13.8583Z"
+        fill={color}
+      ></path>
+    </svg>
+  );
+};
+
+export const IconlyCopy = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16 12.9V17.1C16 20.6 14.6 22 11.1 22H6.9C3.4 22 2 20.6 2 17.1V12.9C2 9.4 3.4 8 6.9 8H11.1C14.6 8 16 9.4 16 12.9Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M22 6.9V11.1C22 14.6 20.6 16 17.1 16H16V12.9C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2H17.1C20.6 2 22 3.4 22 6.9Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const IconlyBookmark = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8.54248 9.21765H15.3975"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11.9702 2.5C5.58324 2.5 4.50424 3.432 4.50424 10.929C4.50424 19.322 4.34724 21.5 5.94324 21.5C7.53824 21.5 10.1432 17.816 11.9702 17.816C13.7972 17.816 16.4022 21.5 17.9972 21.5C19.5932 21.5 19.4362 19.322 19.4362 10.929C19.4362 3.432 18.3572 2.5 11.9702 2.5Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  );
+};
+
+export const IconlyTelegram = ({ size = 24, color = "#000000" }) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.5131 15.9608L10.1876 17.9466C9.77411 18.2988 9.13291 18.078 9.02491 17.5458L8.13859 13.1849L3.8418 12.64C2.86006 12.5154 2.68297 11.1688 3.59856 10.7942L19.7433 4.18663C20.4264 3.90739 21.1405 4.51356 20.9761 5.2326L17.8061 19.1093C17.632 19.8731 16.6843 20.1456 16.1306 19.5919L10.8512 14.3135"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+      <path
+        d="M8.13867 13.1822L15.4293 8.27344"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
     </svg>
   );
 };

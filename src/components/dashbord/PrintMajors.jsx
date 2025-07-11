@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../../public/logo.svg";
+// import logo from "../../../public/logo.svg";
 
 const toPersianNumber = (input) =>
   String(input).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
@@ -8,44 +8,35 @@ const getAdmissionType = (type) => {
   if (type === "daytime") return "روزانه";
   if (type === "evening") return "نوبت دوم";
   if (type === "nighttime") return "نوبت دوم";
-
-};
-
-const getCurrentDateInPersian = () => {
-  const months = [
-    "فروردین",
-    "اردیبهشت",
-    "خرداد",
-    "تیر",
-    "مرداد",
-    "شهریور",
-    "مهر",
-    "آبان",
-    "آذر",
-    "دی",
-    "بهمن",
-    "اسفند",
-  ];
-  const now = new Date();
-  const year = now.getFullYear() - 621;
-  const month = months[now.getMonth()];
-  const day = now.getDate();
-
-  return `${toPersianNumber(day)} ${toPersianNumber(month)} ${toPersianNumber(
-    year
-  )}`;
 };
 
 const PrintMajors = () => {
   const [majors, setMajors] = useState([]);
-
+  const [student, setStudent] = useState(null);
+  const [persianDate, setPersianDate] = useState("");
+  const [logo, setLogo] = useState(null);
   useEffect(() => {
+    setLogo(sessionStorage.getItem("printLogo"));
     const majorsData = sessionStorage.getItem("majorsData");
+    setStudent(JSON.parse(sessionStorage.getItem("student")));
     if (majorsData) {
       setMajors(JSON.parse(majorsData));
     }
 
     document.title = "نتایج";
+
+    fetch("https://api.keybit.ir/time/")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.date?.full) {
+          setPersianDate(
+            data.date.full.official.usual.fa + "  " + data.time12.full.short.fa
+          );
+        }
+      })
+      .catch((err) => {
+        console.error("خطا در دریافت تاریخ:", err);
+      });
   }, []);
 
   if (!majors.length) {
@@ -56,8 +47,8 @@ const PrintMajors = () => {
     fontFamily: "IranSans, sans-serif",
     fontSize: "11px",
     lineHeight: 1.6,
-    width: "210mm", // عرض A4
-    height: "297mm", // ارتفاع A4
+    width: "210mm",
+    height: "297mm",
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
@@ -98,7 +89,7 @@ const PrintMajors = () => {
   };
 
   const tableStyle = {
-    marginTop: "50px",
+    marginTop: "25px",
     width: "100%",
     borderCollapse: "collapse",
   };
@@ -111,7 +102,7 @@ const PrintMajors = () => {
 
   const thStyle = {
     ...thtdStyle,
-    backgroundColor:"#F5F5F5",
+    backgroundColor: "#F5F5F5",
     fontWeight: "bold",
   };
 
@@ -141,7 +132,6 @@ const PrintMajors = () => {
         `}
       </style>
 
-      {/* Header */}
       <div style={headerStyle}>
         <div
           style={{
@@ -158,19 +148,24 @@ const PrintMajors = () => {
           </div>
         </div>
         <div style={userInfoStyle}>
-          <div>نام مشاور: محمود دولتی</div>
-          <div>تاریخ: {getCurrentDateInPersian()}</div> {/* تاریخ داینامیک */}
+          <div>نام مشاور: {sessionStorage.getItem("manager")}</div>
+          <div>تاریخ: {persianDate || "در حال دریافت تاریخ..."}</div>
         </div>
       </div>
 
-      {/* Info Header */}
       <div style={infoHeaderStyle}>
-        <p>نام دانش‌آموز: محمد میرابی</p>
-        <p>گروه: نظری - انسانی</p>
+        <p>نام دانش‌آموز: {student.name}</p>
+        <p>
+          گروه: {["نظری-ریاضی", "نظری-تجربی", "نظری-انسانی"][student.field]}
+        </p>
         <p>تعداد اولویت‌ها: {toPersianNumber(majors.length)}</p>
       </div>
 
-      {/* Table */}
+      <div>
+        <p>یادداشت:</p>
+        <p>{sessionStorage.getItem("note") !="null" ? sessionStorage.getItem("note") : ""}</p>
+      </div>
+
       <table style={tableStyle}>
         <thead>
           <tr>
@@ -189,18 +184,19 @@ const PrintMajors = () => {
             <tr key={idx}>
               <td style={thtdStyle}>{toPersianNumber(idx + 1)}</td>
               <td style={thtdStyle}>{item.uni_name}</td>
-              <td style={thtdStyle}>{item.province || "-"}</td>
-              <td style={thtdStyle}>{item.city || "-"}</td>
+              <td style={thtdStyle}>{item.city.state.name || "-"}</td>
+              <td style={thtdStyle}>{item.city.name || "-"}</td>
               <td style={thtdStyle}>{item.major}</td>
               <td style={thtdStyle}>{toPersianNumber(item.code)}</td>
               <td style={thtdStyle}>{getAdmissionType(item.major_type)}</td>
-              <td style={thtdStyle}>{item.description || "-"}</td>
+              <td style={thtdStyle}>
+                {item.description !== "nan" ? item.description : "-"}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Footer */}
       <div style={footerStyle}>تمامی حقوق محفوظ است &copy; ۱۴۰۴-۲۰۲۵</div>
     </div>
   );

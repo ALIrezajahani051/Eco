@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -9,32 +9,12 @@ import ListItemText from "@mui/material/ListItemText";
 import LoginIcon from "@mui/icons-material/Login";
 import { Box, Button } from "@mui/material";
 import logo from "../../../public/logo.png";
+import SupportDialog from "./SupportDialog";
 import "./Drawer.css";
 import {
   IconlyArrowLeft2,
-  IconlyHome,
-  IconlyHomebold,
-  IconlyInfoSquare,
-  IconlyInfoSquarebold,
-  IconlyProfileTick,
-  IconlyBook,
-  IconlyEdu,
-  IconlyGame,
-  IconlyEdit,
-  IconlyCalendar,
-  IconlyCalendarbold,
   IconlyBook2,
-  IconlyWallet,
-  IconlyReportBold,
-  IconlyReport,
-  Iconlyuser,
-  IconlyEduBold,
-  Iconlyuserbold,
-  IconlyEditbold,
-  IconlyWalletbold,
-  IconlyGameBold,
   IconlySupport,
-  IconlyBookBold,
   IconlyBook2Bold,
 } from "../../../public/Icons";
 
@@ -58,9 +38,16 @@ export default function MajorDrawer({ active, setActive, open, setOpen }) {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  const [openSupport, setOpenSupport] = useState(false);
 
   return (
     <ThemeProvider theme={customTheme}>
+      <SupportDialog
+        open={openSupport}
+        onClose={() => {
+          setOpenSupport(false);
+        }}
+      />
       <Drawer
         anchor="right"
         variant="permanent"
@@ -91,7 +78,7 @@ export default function MajorDrawer({ active, setActive, open, setOpen }) {
             position: "absolute",
             top: "15px",
             left: "-28px",
-            zIndex: -1,
+            zIndex: 1,
             WebkitBorderTopLeftRadius: "8px",
             WebkitBorderBottomLeftRadius: "8px",
             WebkitBorderTopRightRadius: "0px",
@@ -194,16 +181,19 @@ export default function MajorDrawer({ active, setActive, open, setOpen }) {
           ))}
         </List>
         <Button
-          className="Btn"
+          onClick={() => {
+            setOpenSupport(true);
+          }}
+          className="BtnM"
           sx={{
             marginTop: "50px",
             minWidth: open ? "75%" : "15px",
             padding: open ? "8px" : "6px 8px",
             whiteSpace: "nowrap",
             alignSelf: "center",
-            backgroundColor: "#417EEE",
+            backgroundColor: "#34495E",
             "&:hover": {
-              backgroundColor: "#3a7af0",
+              backgroundColor: "#34495E",
             },
           }}
           variant="contained"

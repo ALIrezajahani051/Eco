@@ -65,10 +65,10 @@ export default function Majordetail({
         {major.major}
       </Typography>
       <Typography sx={{ width: "10%", textAlign: "center" }}>
-        {major.city}
+        {major.city.name}
       </Typography>
       <Typography sx={{ width: "10%", textAlign: "center" }}>
-        {major.province}
+        {major.city.state.name}
       </Typography>
       <Typography
         sx={{ width: "15%", fontSize: "0.8rem", textAlign: "center" }}
@@ -90,7 +90,7 @@ export default function Majordetail({
           wordWrap: "break-word",
         }}
       >
-        {major.description ? major.description : "-"}
+        {major.description!="nan" ? major.description : "-"}
       </Typography>
     </Box>
   );
